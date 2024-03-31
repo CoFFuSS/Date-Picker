@@ -83,8 +83,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --rule 'no-console: [\"error\", { \"allow\": [\"error\", \"info\"] }]' --fix",
-      "stylelint --fix",
+      "eslint ./ --rule 'no-console: [\"error\", { \"allow\": [\"error\", \"info\"] }]' --fix",
       "git add"
     ]
   },
