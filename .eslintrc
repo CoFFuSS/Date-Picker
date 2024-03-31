@@ -28,19 +28,27 @@
       "project": ["./tsconfig.json"],
       "sourceType": "module"
     },
-  
+
       "settings": {
       "import/resolver": {
         "typescript": {}
       }
     },
     "ignorePatterns": ["cypress.config.ts", "**/*.cy.ts", "cypress/support/*.ts"],
-  
+
     "rules": {
           "import/no-unresolved": "error",
-      "import/no-extraneous-dependencies": "error",
-  
-  
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": [
+              "**/*.stories.*",
+              "**/.storybook/**/*.*"
+            ],
+            "peerDependencies": true
+          }
+        ],
+
       "react/jsx-key": "error",
       "react/react-in-jsx-scope": 0,
       "react/jsx-props-no-spreading": 0,
@@ -53,7 +61,7 @@
       "react/require-default-props": 0,
       "react/jsx-max-props-per-line": ["warn", { "maximum": 1, "when": "multiline" }],
       "react/jsx-indent-props": ["warn", { "indentMode": 2, "ignoreTernaryOperator": true } ],
-  
+
       "@typescript-eslint/no-shadow": "warn",
       "@typescript-eslint/indent": 0,
       "@typescript-eslint/no-explicit-any": "error",
@@ -88,7 +96,7 @@
           "allowComparingNullableBooleansToFalse": true
         }
       ],
-  
+
       "import/order": [
         "warn",
         {
@@ -108,7 +116,7 @@
         }
       ],
       "import/prefer-default-export": 0,
-  
+
       "max-len": [
         "warn",
         {
@@ -123,7 +131,7 @@
           "ignoreRegExpLiterals": true
         }
       ],
-  
+
       "padding-line-between-statements": [
         "warn",
         { "blankLine": "always", "prev": "*", "next": "return" },
@@ -142,7 +150,7 @@
         { "blankLine": "always", "prev": "function", "next": "*" },
         { "blankLine": "always", "prev": "*", "next": "throw" }
       ],
-  
+
       "arrow-body-style": ["error", "as-needed"],
       "no-confusing-arrow": ["warn", { "onlyOneSimpleParam": true }],
       "object-curly-newline": 0,
@@ -154,9 +162,8 @@
       "no-alert": "off",
       "no-underscore-dangle": "off",
       "no-fallthrough": "warn",
-  
+
       "prettier/prettier": "warn"
-  
+
     }
   }
-  
