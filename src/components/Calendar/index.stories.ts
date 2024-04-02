@@ -1,23 +1,21 @@
-import { fn } from '@storybook/test';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { DateInput } from '.';
+import { Calendar } from '.';
 
 const meta = {
-  title: 'Example/DateInput',
-  component: DateInput,
+  title: 'Example/Calendar',
+  component: Calendar,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  args: { onChange: fn() },
-} satisfies Meta<typeof DateInput>;
+} satisfies Meta<typeof Calendar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    value: '22/11/2022',
+    isShown: true,
   },
 };

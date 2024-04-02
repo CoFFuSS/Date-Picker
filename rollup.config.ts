@@ -5,6 +5,7 @@ import { terser } from 'rollup-plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import svgr from '@svgr/rollup';
 
 export default {
   input: 'src/index.ts',
@@ -22,7 +23,7 @@ export default {
     {
       file: 'dist/bundle.umd.js',
       format: 'umd',
-      name: 'YourLibraryName', // Replace 'YourLibraryName' with your library name
+      name: 'DatePicker',
       sourcemap: true,
       globals: {
         react: 'React',
@@ -33,6 +34,7 @@ export default {
   plugins: [
     peerDepsExternal(),
     resolve(),
+    svgr(),
     commonjs(),
     typescript(),
     babel({ babelHelpers: 'runtime', extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
