@@ -20,4 +20,4 @@ export const basicTheme = {
   utils: {
     pxToRem,
   },
-};
+} as const;

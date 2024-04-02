@@ -10,7 +10,7 @@ export const THEME_COLORS = {
   mediumGray: '#AAAAAA',
   lightGray: '#E1E1E1',
   blue: '#2F80ED',
-};
+} as const;
 
 export const THEME_FONT_FAMILIES = {
   primary: 'Open Sans, sans-serif',
@@ -22,7 +22,7 @@ export const THEME_FONT_WEIGHT = {
   medium: '500',
   semibold: '600',
   bold: '700',
-};
+} as const;
 
 interface TypographyVariants {
   [key: string]: FlattenInterpolation<ThemeProps<DefaultTheme>>;
