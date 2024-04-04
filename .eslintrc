@@ -50,7 +50,7 @@
         ],
 
       "react/jsx-key": "error",
-      "react/react-in-jsx-scope": 0,
+      "react/react-in-jsx-scope": 0, // disabled to prevent import React error for storybook
       "react/jsx-props-no-spreading": 0,
       "react/jsx-no-useless-fragment": 0,
       "react/jsx-filename-extension": 0,
