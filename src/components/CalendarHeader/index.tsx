@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { StartDays } from '@/constants/startDays';
 import { getDaysOfWeek } from '@/utils/getDaysOfWeek';
 

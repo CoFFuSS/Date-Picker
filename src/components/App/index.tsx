@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import { basicTheme } from '@/theme';
 import { DateInput } from '@/components/DateInput';

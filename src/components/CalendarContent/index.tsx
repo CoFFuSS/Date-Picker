@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { CalendarProps } from '@/types/interfaces';
 import { isWeekend } from '@/utils/IsWeekend';
 import { isHoliday } from '@/utils/isHoliday';

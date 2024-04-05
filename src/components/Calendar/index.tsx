@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { CalendarHeader } from '@/components/CalendarHeader';
 import { CalendarContent } from '@/components/CalendarContent';
 import { CalendarProps } from '@/types/interfaces';

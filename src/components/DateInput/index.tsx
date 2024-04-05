@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 
 import CalendarIcon from '@/assets/images/CalendarIcon.svg';
 import CloseCalendarIcon from '@/assets/images/CloseCalendarIcon.svg';

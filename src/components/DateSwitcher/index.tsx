@@ -1,5 +1,3 @@
-import React from 'react';
-
 import SelectNextDateIcon from '@/assets/images/SelectNextDateIcon.svg';
 import SelectPrevDateIcon from '@/assets/images/SelectPrevDateIcon.svg';
 
