@@ -1,4 +1,4 @@
-import { CalendarProps } from '@/types/interfaces';
+import { CalendarContentProps } from '@/types/interfaces';
 import { isWeekend } from '@/utils/IsWeekend';
 import { isHoliday } from '@/utils/isHoliday';
 import { getFormattedDate } from '@/utils/getFormattedDate';
@@ -12,7 +12,7 @@ export const CalendarContent = ({
   holidays,
   selectedDay,
   setSelectedDateValue,
-}: Omit<CalendarProps, 'isShown' | 'startWeekWith'>) => (
+}: CalendarContentProps) => (
   <DateCellWrapper>
     {dates.map(({ day, month, year, type }) => {
       const formattedDate = getFormattedDate(day, month, year);
@@ -23,7 +23,7 @@ export const CalendarContent = ({
 
       return (
         <DateCell
-          key={`${day}-${month}-${year}`}
+          key={`${day}.${month}.${year}`}
           data-isholiday={isHolidayCell}
           data-isweekend={isWeekendCell}
           data-selected={isSelected}

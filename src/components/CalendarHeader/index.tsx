@@ -1,11 +1,7 @@
-import { StartDays } from '@/constants/startDays';
 import { getDaysOfWeek } from '@/utils/getDaysOfWeek';
+import { CalendarHeaderProps } from '@/types/interfaces';
 
 import { Container, HeaderCell, HeaderCellText } from './styled';
-
-interface CalendarHeaderProps {
-  startWeekWith: StartDays;
-}
 
 export const CalendarHeader = ({ startWeekWith }: CalendarHeaderProps) => {
   const daysOfWeek = getDaysOfWeek(startWeekWith);

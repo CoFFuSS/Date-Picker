@@ -1,30 +1,28 @@
-import { ComponentType, useState } from 'react';
+import { ComponentType, useContext, useMemo } from 'react';
 
-import { CalendarProps, CellDate } from '@/types/interfaces';
+import { ServiceDecoratorContext } from '@/context/serviceDecoratorContext';
 import { useHolidayRequest } from '@/hooks/useHolidayRequest';
+import { CalendarContext } from '@/context/CalendarContext';
 
 export const serviceDecorator =
-  (
-    Component: ComponentType<CalendarProps>,
-    dates: CellDate[],
-    year: number,
-    month: number,
-    day: number,
-  ) =>
-  (props: Omit<CalendarProps, 'holidays | dates'>) => {
-    const [holidays, setHolidays] = useState<string[]>([]);
+  (Component: ComponentType<{}>, day: number, month: number, year: number) => () => {
+    const { showHolidays } = useContext(CalendarContext);
 
-    const [holidaysResponse] = useHolidayRequest(year, props);
-    setHolidays(holidaysResponse);
+    const [holidaysResponse] = useHolidayRequest(year, showHolidays);
+
+    const contextValue = useMemo(
+      () => ({
+        holidays: holidaysResponse,
+        year,
+        month,
+        day,
+      }),
+      [holidaysResponse],
+    );
 
     return (
-      <Component
-        {...props}
-        holidays={holidays}
-        dates={dates}
-        year={year}
-        month={month}
-        day={day}
-      />
+      <ServiceDecoratorContext.Provider value={contextValue}>
+        <Component />
+      </ServiceDecoratorContext.Provider>
     );
   };
