@@ -10,23 +10,6 @@ export interface CellDate {
   type: CellTypes;
 }
 
-// export interface CalendarProps {
-//   year?: number;
-//   month?: number;
-//   day?: number;
-//   isShown: boolean;
-//   dates: CellDate[];
-//   holidays: string[];
-//   showWeekends: boolean;
-//   showHolidays?: boolean;
-//   startWeekWith: StartDays;
-//   selectedDay: string;
-//   setSelectedDateValue: (
-//     type: CellTypes,
-//     formattedDate: string,
-//   ) => MouseEventHandler<HTMLDivElement | undefined>;
-// }
-
 export interface HolidaysApiResponse {
   date: string;
   localName: string;
