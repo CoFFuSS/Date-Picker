@@ -10,14 +10,10 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  args: { onChange: fn(), onCalendarClick: fn(), onCloseCalendarClick: fn() },
+  args: { onCalendarIconClick: fn() },
 } satisfies Meta<typeof DateInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-  args: {
-    value: '22/11/2022',
-  },
-};
+export const Primary: Story = { args: { onCalendarIconClick: fn(), onSubmitDate: fn() } };

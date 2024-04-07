@@ -1,16 +1,10 @@
-import React from 'react';
-
 import SelectNextDateIcon from '@/assets/images/SelectNextDateIcon.svg';
 import SelectPrevDateIcon from '@/assets/images/SelectPrevDateIcon.svg';
+import { DateSwitcherProps } from '@/types/interfaces';
 
 import { Container, DateSelector, SwitcherDateButton, SwitcherDateLabel } from './styled';
 
-interface DateSwitcherProps {
-  value: string;
-  onDateSwitchClick: () => void;
-}
-
-export const DateSwitcher = ({ value, onDateSwitchClick }: DateSwitcherProps) => (
+export const DateSwitcher = ({ month }: DateSwitcherProps) => (
   <Container>
     <DateSelector>
       <SelectPrevDateIcon />
@@ -19,9 +13,8 @@ export const DateSwitcher = ({ value, onDateSwitchClick }: DateSwitcherProps) =>
       <SwitcherDateButton
         id='DateSwitcher'
         type='submit'
-        onClick={onDateSwitchClick}
       >
-        {value}
+        {month}
       </SwitcherDateButton>
     </SwitcherDateLabel>
     <DateSelector>

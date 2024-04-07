@@ -1,6 +1,32 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 
 import path, { join, dirname } from 'path';
+import { SourceFile, TransformerFactory } from 'typescript';
+
+const createBabelTsRule = (transformers?: TransformerFactory<SourceFile>[]) => ({
+  test: /\.(ts|js)x?$/,
+  exclude: /node_modules/,
+  use: [
+    {
+      loader: 'babel-loader',
+      options: {
+        cacheDirectory: true,
+      },
+    },
+    {
+      loader: 'ts-loader',
+      options: {
+        transpileOnly: true,
+        getCustomTransformers: transformers?.length
+          ? () => ({
+              before: transformers,
+            })
+          : undefined,
+      },
+    },
+  ],
+});
+
 
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')));
@@ -18,6 +44,7 @@ const config: StorybookConfig = {
   webpackFinal: async (config) => {
     config.module = config.module || {};
     config.module.rules = config.module.rules || [];
+    config.module.rules.push(createBabelTsRule())
     config.resolve = config.resolve || {}
     config.resolve.alias = config.resolve.alias || {}
 
@@ -32,7 +59,7 @@ const config: StorybookConfig = {
     });
 
     config.resolve.alias['@'] = path.resolve(__dirname, '../src');
-    
+
     return config;
   },
   framework: {

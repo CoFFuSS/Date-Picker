@@ -2,6 +2,12 @@ import styled from 'styled-components';
 
 import { basicTheme } from '@/theme';
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: ${basicTheme.spacing(250)};
+`;
+
 export const Container = styled.div`
   color: ${basicTheme.colors.secondary};
   display: flex;
@@ -45,4 +51,9 @@ export const DateInputField = styled.input`
   &:placeholder-shown {
     color: ${basicTheme.colors.gray};
   }
+`;
+
+export const ErrorValidation = styled.div`
+  ${basicTheme.typography.variant.h1}
+  color: ${basicTheme.colors.secondary};
 `;

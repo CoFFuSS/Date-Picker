@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { basicTheme } from '@/theme';
 
 export const CalendarContainer = styled.div<{ isShown: boolean }>`
-  margin-top: ${basicTheme.spacing(50)};
+  margin-top: ${basicTheme.spacing(8)};
   position: absolute;
   background-color: ${basicTheme.colors.primary};
   width: ${basicTheme.spacing(230)};

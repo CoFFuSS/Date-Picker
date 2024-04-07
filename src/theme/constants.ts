@@ -10,6 +10,8 @@ export const THEME_COLORS = {
   mediumGray: '#AAAAAA',
   lightGray: '#E1E1E1',
   blue: '#2F80ED',
+  lightPeachy: '#ffccb8',
+  green: '#2ECC40',
 } as const;
 
 export const THEME_FONT_FAMILIES = {
