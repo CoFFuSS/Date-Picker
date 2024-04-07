@@ -1,16 +1,3 @@
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { CalendarWithPicker } from './components/CalendarWithInput';
 
-import { App } from '@/components/App';
-
-import { ErrorBoundary } from './components/ErrorBoundary';
-
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-
-root.render(
-  <ErrorBoundary>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </ErrorBoundary>,
-);
+export { CalendarWithPicker };
