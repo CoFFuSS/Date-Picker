@@ -20,6 +20,7 @@ export const CalendarWithPicker = ({
   max = '',
 }: CalendarWithPickerProps) => {
   const [inputDate, setInputDate] = useState(value || currentDate);
+  const [selectedValue, setSelectedValue] = useState(value || inputDate);
   const [isShown, setIsShown] = useState<boolean>(true);
   const { day, month, year } = splitDate(inputDate);
 
@@ -35,15 +36,17 @@ export const CalendarWithPicker = ({
       showWeekends,
       startWeekWith: startOfWeek,
       inputDate,
+      selectedValue,
       isShown,
     }),
-    [dates, inputDate, isShown, showHolidays, showWeekends, startOfWeek],
+    [dates, inputDate, isShown, selectedValue, showHolidays, showWeekends, startOfWeek],
   );
 
   const CalendarWithLogic = serviceDecorator(Calendar, day, month, year);
   const CalendarWithInput = inputLogicDecorator(
     CalendarWithLogic,
     setInputDate,
+    setSelectedValue,
     setIsShown,
     max,
     min,

@@ -9,5 +9,6 @@ export const CalendarContext = createContext({
   showHolidays: true,
   startWeekWith: StartDays.Monday,
   inputDate: '',
+  selectedValue: '',
   isShown: true,
 });

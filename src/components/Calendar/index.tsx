@@ -13,7 +13,9 @@ import { DateSwitcher } from '../DateSwitcher';
 
 export const Calendar = () => {
   const { setSelectedDateValue } = useContext(InputLogicContext);
-  const { dates, showWeekends, startWeekWith, inputDate, isShown } = useContext(CalendarContext);
+  const { dates, showWeekends, startWeekWith, isShown, selectedValue } =
+    useContext(CalendarContext);
+
   const { holidays, year, month } = useContext(ServiceDecoratorContext);
   const monthName = getMonthName(year, month);
 
@@ -25,7 +27,7 @@ export const Calendar = () => {
         dates={dates}
         holidays={holidays}
         showWeekends={showWeekends}
-        selectedDay={inputDate}
+        selectedDay={selectedValue}
         setSelectedDateValue={setSelectedDateValue}
       />
     </CalendarContainer>

@@ -1,14 +1,8 @@
-import { MouseEventHandler, createContext } from 'react';
+import { createContext } from 'react';
 
 import { CellTypes } from '@/constants/cellTypes';
 
-interface InputLogicContextValue {
-  setSelectedDateValue: (
-    type: CellTypes,
-    formattedDate: string,
-  ) => MouseEventHandler<HTMLDivElement | undefined>;
-}
-
-export const InputLogicContext = createContext<InputLogicContextValue>({
+export const InputLogicContext = createContext({
   setSelectedDateValue: (_type: CellTypes, _formattedDate: string) => () => {},
+  onSwitchMonth: (_value: string, _type: CellTypes) => () => {},
 });
