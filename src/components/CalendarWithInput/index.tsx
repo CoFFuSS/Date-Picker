@@ -45,6 +45,7 @@ export const CalendarWithPicker = ({
   const CalendarWithLogic = serviceDecorator(Calendar, day, month, year);
   const CalendarWithInput = inputLogicDecorator(
     CalendarWithLogic,
+    inputDate,
     setInputDate,
     setSelectedValue,
     setIsShown,

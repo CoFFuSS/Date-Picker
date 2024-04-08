@@ -11,6 +11,7 @@ import { getFormattedDate } from '@/utils/getFormattedDate';
 export const inputLogicDecorator =
   (
     Component: ComponentType<{}>,
+    inputDate: string,
     setInputValue: Dispatch<SetStateAction<string>>,
     setSelectedValue: Dispatch<SetStateAction<string>>,
     setIsShown: Dispatch<SetStateAction<boolean>>,
@@ -42,8 +43,8 @@ export const inputLogicDecorator =
       }
     };
 
-    const onSwitchMonth = (value: string, type: CellTypes) => () => {
-      const { day, month, year } = splitDate(value);
+    const onSwitchMonth = (type: CellTypes) => () => {
+      const { day, month, year } = splitDate(inputDate);
 
       const newValue =
         type === CellTypes.Next

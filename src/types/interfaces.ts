@@ -83,3 +83,9 @@ export interface Holiday {
   launchYear: number | null;
   types: string[];
 }
+
+export interface Todo {
+  id: number;
+  title: string;
+  createdAt: string;
+}

@@ -77,7 +77,7 @@ export const DateInput = ({ onCalendarIconClick, onSubmitDate }: DateInputProps)
             onKeyDown={handleEnterPress}
           />
         </InputLabel>
-        {isEmpty && (
+        {!isEmpty && (
           <CalendarIconContainer onClick={handleClearInput}>
             <CloseCalendarIcon />
           </CalendarIconContainer>
