@@ -12,6 +12,7 @@ export const THEME_COLORS = {
   blue: '#2F80ED',
   lightPeachy: '#ffccb8',
   green: '#2ECC40',
+  pink: '#EE3377',
 } as const;
 
 export const THEME_FONT_FAMILIES = {

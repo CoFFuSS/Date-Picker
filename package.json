@@ -91,14 +91,14 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint ./ --rule 'no-console: [\"error\", { \"allow\": [\"error\", \"info\"] }]' --fix",
+      "eslint --rule 'no-console: [\"error\", { \"allow\": [\"error\", \"info\"] }]' --fix",
+      "stylelint --fix",
+      "git add"
+    ],
+    "*.{css,scss}": [
+      "stylelint --fix",
       "git add"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "eslintConfig": {
     "extends": [
@@ -107,6 +107,9 @@
   },
   "scripts": {
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint ./",
+    "lint:fix": "eslint ./ --fix",
+    "stylelint": "stylelint ./ "
   }
 }

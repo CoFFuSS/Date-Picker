@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 import { StartDays } from '@/constants/startDays';
-import { CellDate } from '@/types/interfaces';
+import { CellDate, Todo } from '@/types/interfaces';
 
 export const CalendarContext = createContext({
   dates: [] as CellDate[],
@@ -11,4 +11,5 @@ export const CalendarContext = createContext({
   inputDate: '',
   selectedValue: '',
   isShown: true,
+  todo: [] as Todo[],
 });

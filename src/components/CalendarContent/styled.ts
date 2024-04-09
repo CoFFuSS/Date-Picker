@@ -5,6 +5,8 @@ import { basicTheme } from '@/theme';
 export const DateCell = styled.div`
   cursor: pointer;
 
+  position: relative;
+
   display: flex;
   gap: ${basicTheme.spacing(10)};
   align-items: center;
@@ -30,6 +32,20 @@ export const DateCell = styled.div`
 
   &[data-inthismonth='false'] {
     color: ${basicTheme.colors.mediumGray};
+  }
+
+  &[data-havetodos='true']::after {
+    content: '';
+
+    position: absolute;
+    right: ${basicTheme.spacing(4)};
+    bottom: ${basicTheme.spacing(4)};
+
+    width: ${basicTheme.spacing(4)};
+    height: ${basicTheme.spacing(4)};
+
+    background-color: ${basicTheme.colors.pink};
+    border-radius: 50%;
   }
 `;
 

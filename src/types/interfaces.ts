@@ -44,6 +44,7 @@ export interface CalendarContentProps {
     type: CellTypes,
     formattedDate: string,
   ) => MouseEventHandler<HTMLDivElement | undefined>;
+  todo: Todo[];
 }
 
 export interface CalendarProps extends CalendarContentProps {
