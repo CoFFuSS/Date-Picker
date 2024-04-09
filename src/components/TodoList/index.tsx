@@ -1,8 +1,19 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 
 import { Todo } from '@/types/interfaces';
 
+import {
+  Container,
+  DateInfoBlock,
+  DateInputField,
+  EmptyError,
+  InputLabel,
+  TodoButton,
+  Wrapper,
+} from './styled';
+
 interface TodoListProps {
+  isShown: boolean;
   selectedDate: string;
   todos: Todo[];
   addTodo: (newTodo: Todo) => void;
@@ -12,6 +23,7 @@ interface TodoListProps {
 }
 
 export const TodoList = ({
+  isShown,
   selectedDate,
   todos,
   addTodo,
@@ -20,48 +32,58 @@ export const TodoList = ({
   setTodoText,
 }: TodoListProps) => {
   const filteredTodos = todos.filter(({ createdAt }) => createdAt === selectedDate);
+  const [isEmpty, setIsEmpty] = useState<boolean>(true);
 
   const handleAddTodo = () => {
-    addTodo({ id: 1, title: todoText, createdAt: selectedDate });
+    if (todoText.length > 0) {
+      setIsEmpty(true);
+      const lastTodo = todos[todos.length - 1];
+      const id = lastTodo ? lastTodo.id + 1 : 1;
+      addTodo({ id, title: todoText, createdAt: selectedDate });
+      setTodoText('');
+    } else {
+      setIsEmpty(false);
+    }
   };
 
-  const handleRemoveTodo = () => {
-    removeTodo(1);
+  const handleRemoveTodo = (id: number) => () => {
+    removeTodo(id);
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => () => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTodoText(e.target.value);
   };
 
   return (
-    <div>
-      <input
-        onChange={handleChange}
-        value={todoText}
-      />
-      <button
-        onClick={handleAddTodo}
-        type='submit'
-      >
-        Add Todo
-      </button>
-      <button
-        onClick={handleRemoveTodo}
-        type='submit'
-      >
-        Remove Todo
-      </button>
-      {filteredTodos.map((todo) => {
-        const { id, createdAt, title } = todo;
-
-        return (
-          <h1 key={id}>
-            {createdAt}
-            {id}
-            {title}
-          </h1>
-        );
-      })}
-    </div>
+    <Wrapper isShown={isShown}>
+      <DateInfoBlock>Selected day - {selectedDate}</DateInfoBlock>
+      <Container>
+        <InputLabel htmlFor='inputTodo'>
+          <DateInputField
+            value={todoText}
+            onChange={handleChange}
+            placeholder='Enter Todo Text'
+          />
+        </InputLabel>
+        <TodoButton
+          onClick={handleAddTodo}
+          type='submit'
+        >
+          Add Todo
+        </TodoButton>
+      </Container>
+      {!isEmpty && <EmptyError>You dont enter anything</EmptyError>}
+      {filteredTodos.map(({ id, title }) => (
+        <Container key={id}>
+          {title}
+          <TodoButton
+            onClick={handleRemoveTodo(id)}
+            type='submit'
+          >
+            Remove Todo
+          </TodoButton>
+        </Container>
+      ))}
+    </Wrapper>
   );
 };

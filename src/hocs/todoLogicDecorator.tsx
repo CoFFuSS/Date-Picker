@@ -7,12 +7,13 @@ import { CalendarContext } from '@/context/CalendarContext';
 export const todoLogicDecorator = (Component: ComponentType<{}>) => () => {
   const [todoText, setTodoText] = useState<string>('');
   const [todo, addTodo, removeTodo] = useLocalStorageTodo();
-  const { selectedValue } = useContext(CalendarContext);
+  const { selectedValue, isShown } = useContext(CalendarContext);
 
   return (
-    <div>
+    <>
       <Component />
       <TodoList
+        isShown={isShown}
         selectedDate={selectedValue}
         todos={todo}
         addTodo={addTodo}
@@ -20,6 +21,6 @@ export const todoLogicDecorator = (Component: ComponentType<{}>) => () => {
         todoText={todoText}
         setTodoText={setTodoText}
       />
-    </div>
+    </>
   );
 };

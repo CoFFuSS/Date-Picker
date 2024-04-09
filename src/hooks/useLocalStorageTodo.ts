@@ -3,28 +3,28 @@ import { useState, useEffect } from 'react';
 import { Todo } from '@/types/interfaces';
 
 export const useLocalStorageTodo = () => {
-  const [todo, setTodo] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTodo = (newTodo: Todo) => {
-    setTodo([...todo, newTodo]);
+    setTodos([...todos, newTodo]);
   };
 
   const removeTodo = (index: number) => {
-    const newTodo = todo.filter((_, i) => i !== index);
-    setTodo(newTodo);
+    const newTodo = todos.filter((todo) => todo.id !== index);
+    setTodos(newTodo);
   };
 
   useEffect(() => {
     const storedTodo = localStorage.getItem('todos');
 
     if (storedTodo) {
-      setTodo(JSON.parse(storedTodo));
+      setTodos(JSON.parse(storedTodo));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todo));
-  }, [todo]);
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
-  return [todo, addTodo, removeTodo] as const;
+  return [todos, addTodo, removeTodo] as const;
 };

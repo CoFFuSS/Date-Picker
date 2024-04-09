@@ -3,12 +3,15 @@ import styled from 'styled-components';
 import { basicTheme } from '@/theme';
 
 export const CalendarContainer = styled.div<{ isShown: boolean }>`
-  margin-top: ${basicTheme.spacing(8)};
   position: absolute;
-  background-color: ${basicTheme.colors.primary};
+
+  display: ${(props) => (props.isShown ? 'block' : 'none')};
+
   width: ${basicTheme.spacing(230)};
+  margin-top: ${basicTheme.spacing(8)};
+  padding: ${basicTheme.spacing(10)};
+
+  background-color: ${basicTheme.colors.primary};
   border: ${basicTheme.spacing(1)} solid ${basicTheme.colors.lightGray};
   border-radius: ${basicTheme.spacing(8)};
-  display: ${(props) => (props.isShown ? 'block' : 'none')};
-  padding: ${basicTheme.spacing(10)};
 `;
