@@ -110,6 +110,7 @@
     "build-storybook": "storybook build",
     "lint": "eslint ./",
     "lint:fix": "eslint ./ --fix",
-    "stylelint": "stylelint ./ "
+    "stylelint": "stylelint ./ ",
+    "stylelint:fix": "stylelint ./ --fix"
   }
 }

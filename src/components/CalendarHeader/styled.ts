@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import { basicTheme } from '@/theme';
 
 export const Container = styled.div`
+  user-select: none;
+
   display: flex;
   flex-direction: row;
+
   width: ${basicTheme.spacing(230)};
   height: ${basicTheme.spacing(32)};
 `;

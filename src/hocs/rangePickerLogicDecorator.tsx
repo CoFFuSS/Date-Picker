@@ -42,7 +42,7 @@ export const rangePickerLogicDecorator =
 
       const newDate = updateDate(newValue, type);
 
-      setStartDate(newDate);
+      setInputDate(newDate);
     };
 
     const onCalendarIconClick = () => {
@@ -74,6 +74,14 @@ export const rangePickerLogicDecorator =
         return;
       }
 
+      if (startDate > date) {
+        setEndDate(startDate);
+        setStartDate(date);
+        setIsSelecting(false);
+
+        return;
+      }
+
       setEndDate(date);
       setIsSelecting(false);
     };
@@ -94,7 +102,7 @@ export const rangePickerLogicDecorator =
         handleMouseDown,
         handleMouseEnter,
       }),
-      [isSelecting],
+      [handleMouseEnter],
     );
 
     return (

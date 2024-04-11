@@ -25,6 +25,7 @@ export const CalendarContent = ({
     {dates.map(({ day, month, year, type }) => {
       const formattedDate = getFormattedDate(day, month, year);
       const isSelected = selectedDay === formattedDate && type === CellTypes.Current;
+
       const isStartDate = startDate === formattedDate;
       const isEndDate = endDate === formattedDate;
       const isWeekendCell = showWeekends && isWeekend(day, month, year);
