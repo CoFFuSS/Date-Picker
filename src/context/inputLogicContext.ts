@@ -8,4 +8,6 @@ export const InputLogicContext = createContext({
   handleMouseUp: (_date: string) => () => {},
   handleMouseDown: (_date: string) => () => {},
   handleMouseEnter: (_date: string) => () => {},
+  startDate: '',
+  endDate: '',
 });

@@ -85,6 +85,8 @@ export const rangePickerLogicDecorator =
         handleMouseUp,
         handleMouseDown,
         handleMouseEnter,
+        startDate,
+        endDate,
       }),
       [],
     );

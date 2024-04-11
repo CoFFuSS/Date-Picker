@@ -37,6 +37,8 @@ export interface CalendarContentProps {
   handleMouseUp: (data: string) => () => void;
   handleMouseDown: (data: string) => () => void;
   handleMouseEnter: (data: string) => () => void;
+  startDate: string;
+  endDate: string;
 }
 
 export interface CalendarWithPickerProps {
