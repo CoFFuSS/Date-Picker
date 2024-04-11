@@ -61,11 +61,9 @@ export const CalendarWithTodo = ({
 
   return (
     <CalendarContext.Provider value={contextValue}>
-      <div>
-        <ErrorBoundary>
-          <CalendarWithTodoPicker />
-        </ErrorBoundary>
-      </div>
+      <ErrorBoundary>
+        <CalendarWithTodoPicker />
+      </ErrorBoundary>
     </CalendarContext.Provider>
   );
 };

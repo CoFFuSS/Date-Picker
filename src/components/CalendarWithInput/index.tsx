@@ -56,11 +56,9 @@ export const CalendarWithPicker = ({
 
   return (
     <CalendarContext.Provider value={contextValue}>
-      <div>
-        <ErrorBoundary>
-          <CalendarWithInput />
-        </ErrorBoundary>
-      </div>
+      <ErrorBoundary>
+        <CalendarWithInput />
+      </ErrorBoundary>
     </CalendarContext.Provider>
   );
 };

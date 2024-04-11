@@ -69,6 +69,8 @@ export const inputLogicDecorator =
       () => ({
         setSelectedDateValue,
         onSwitchMonth,
+        startDate: '',
+        endDate: '',
         handleMouseUp: () => () => {},
         handleMouseDown: () => () => {},
         handleMouseEnter: () => () => {},

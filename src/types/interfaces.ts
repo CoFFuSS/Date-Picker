@@ -17,7 +17,7 @@ export interface CalendarHeaderProps {
 export interface DateInputProps {
   onSubmitDate: (inputValue: string) => void;
   onCalendarIconClick: Dispatch<SetStateAction<boolean>>;
-  onCalendarClearIconClick: () => void;
+  onCalendarClearIconClick?: () => void;
   inputDate: string;
 }
 

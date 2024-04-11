@@ -44,7 +44,7 @@ export const DateInput = ({
   };
 
   const handleClearInput = () => {
-    onCalendarClearIconClick();
+    onCalendarClearIconClick?.();
     setIsValid(true);
     setIsEmpty(true);
     setInputValue('');
