@@ -17,6 +17,7 @@ export interface CalendarHeaderProps {
 export interface DateInputProps {
   onSubmitDate: (inputValue: string) => void;
   onCalendarIconClick: Dispatch<SetStateAction<boolean>>;
+  onCalendarClearIconClick: () => void;
   inputDate: string;
 }
 
@@ -34,9 +35,9 @@ export interface CalendarContentProps {
     formattedDate: string,
   ) => MouseEventHandler<HTMLDivElement | undefined>;
   todo: Todo[];
-  handleMouseUp: (data: string) => () => void;
-  handleMouseDown: (data: string) => () => void;
-  handleMouseEnter: (data: string) => () => void;
+  handleMouseUp: (data: string) => MouseEventHandler<HTMLDivElement> | undefined;
+  handleMouseDown: (data: string) => MouseEventHandler<HTMLDivElement> | undefined;
+  handleMouseEnter: (data: string) => MouseEventHandler<HTMLDivElement> | undefined;
   startDate: string;
   endDate: string;
 }

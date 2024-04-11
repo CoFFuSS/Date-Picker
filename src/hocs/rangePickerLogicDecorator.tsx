@@ -1,7 +1,7 @@
 import { ComponentType, Dispatch, SetStateAction, useMemo, useState } from 'react';
 
 import { DateInput } from '@/components/DateInput';
-import { validateInputInRange } from '@/utils/isValideDate';
+import { validateInputInRange } from '@/utils/isValidDate';
 import { CellTypes } from '@/constants/cellTypes';
 import { splitDate } from '@/utils/splitDate';
 import { getFormattedDate } from '@/utils/getFormattedDate';
@@ -20,15 +20,38 @@ export const rangePickerLogicDecorator =
     setIsShown: Dispatch<SetStateAction<boolean>>,
   ) =>
   () => {
-    const [isSelecting, setIsSelecting] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
+    const [isSelecting, setIsSelecting] = useState<boolean>(false);
 
-    const handleStartDateEnter = () => {
-      validateInputInRange(setEndDate, setError, startDate, endDate);
+    const handleStartDateEnter = (startValue: string) => {
+      setInputDate(startValue);
+      setStartDate(startValue);
     };
 
-    const handleEndDateEnter = () => {
-      validateInputInRange(setEndDate, setError, startDate, endDate);
+    const handleEndDateEnter = (endValue: string) => {
+      validateInputInRange(setEndDate, setError, startDate, endValue);
+    };
+
+    const onSwitchMonth = (type: CellTypes) => () => {
+      const { day, month, year } = splitDate(inputDate);
+
+      const newValue =
+        type === CellTypes.Next
+          ? getFormattedDate(day, month + 1, year)
+          : getFormattedDate(day, month - 1, year);
+
+      const newDate = updateDate(newValue, type);
+
+      setStartDate(newDate);
+    };
+
+    const onCalendarIconClick = () => {
+      setIsShown((prev) => !prev);
+    };
+
+    const onCalendarClearIconClick = () => {
+      setStartDate('');
+      setEndDate('');
     };
 
     const handleMouseDown = (date: string) => () => {
@@ -61,34 +84,17 @@ export const rangePickerLogicDecorator =
       }
     };
 
-    const onSwitchMonth = (type: CellTypes) => () => {
-      const { day, month, year } = splitDate(inputDate);
-
-      const newValue =
-        type === CellTypes.Next
-          ? getFormattedDate(day, month + 1, year)
-          : getFormattedDate(day, month - 1, year);
-
-      const newDate = updateDate(newValue, type);
-
-      setStartDate(newDate);
-    };
-
-    const onCalendarIconClick = () => {
-      setIsShown((prev) => !prev);
-    };
-
     const contextValue = useMemo(
       () => ({
         setSelectedDateValue: () => () => {},
         onSwitchMonth,
+        startDate,
+        endDate,
         handleMouseUp,
         handleMouseDown,
         handleMouseEnter,
-        startDate,
-        endDate,
       }),
-      [],
+      [isSelecting],
     );
 
     return (
@@ -97,12 +103,14 @@ export const rangePickerLogicDecorator =
         <DateInput
           onSubmitDate={handleStartDateEnter}
           onCalendarIconClick={onCalendarIconClick}
+          onCalendarClearIconClick={onCalendarClearIconClick}
           inputDate={startDate}
         />
         Select End Date
         <DateInput
           onSubmitDate={handleEndDateEnter}
           onCalendarIconClick={onCalendarIconClick}
+          onCalendarClearIconClick={onCalendarClearIconClick}
           inputDate={endDate}
         />
         {error && <h1>{error}</h1>}

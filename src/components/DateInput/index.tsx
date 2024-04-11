@@ -3,7 +3,7 @@ import { ChangeEvent, useState, KeyboardEvent, useRef } from 'react';
 import CalendarIcon from '@/assets/images/CalendarIcon.svg';
 import CloseCalendarIcon from '@/assets/images/CloseCalendarIcon.svg';
 import { DateInputProps } from '@/types/interfaces';
-import { validateInputDate } from '@/utils/isValideDate';
+import { validateInputDate } from '@/utils/isValidDate';
 
 import {
   CalendarIconContainer,
@@ -14,7 +14,12 @@ import {
   Wrapper,
 } from './styled';
 
-export const DateInput = ({ onCalendarIconClick, onSubmitDate, inputDate }: DateInputProps) => {
+export const DateInput = ({
+  onCalendarIconClick,
+  onSubmitDate,
+  onCalendarClearIconClick,
+  inputDate,
+}: DateInputProps) => {
   const [isValid, setIsValid] = useState<boolean>(true);
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>(inputDate);
@@ -39,6 +44,7 @@ export const DateInput = ({ onCalendarIconClick, onSubmitDate, inputDate }: Date
   };
 
   const handleClearInput = () => {
+    onCalendarClearIconClick();
     setIsValid(true);
     setIsEmpty(true);
     setInputValue('');

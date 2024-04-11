@@ -22,7 +22,7 @@ export const validateInputDate = (
   }
 };
 
-export const isValideRange = (startDate: string, endDate: string) => {
+export const isValidRange = (startDate: string, endDate: string) => {
   const [startDay, startMonth, startYear] = startDate.split('.').map(Number);
   const [endDay, endMonth, endYear] = endDate.split('.').map(Number);
 
@@ -38,6 +38,6 @@ export const validateInputInRange = (
   startDate: string,
   endDate: string,
 ) => {
-  if (isValideRange(startDate, endDate)) setEndDate(endDate);
+  if (isValidRange(startDate, endDate)) setEndDate(endDate);
   else setError('Invalid range');
 };

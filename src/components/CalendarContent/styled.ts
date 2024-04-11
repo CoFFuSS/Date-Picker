@@ -4,6 +4,7 @@ import { basicTheme } from '@/theme';
 
 export const DateCell = styled.div`
   cursor: pointer;
+  user-select: none;
 
   position: relative;
 
@@ -58,11 +59,13 @@ export const DateCell = styled.div`
   }
 
   &[data-startdate='true'] {
+    color: ${basicTheme.colors.primary};
     background-color: ${basicTheme.colors.startDate};
     border-radius: ${basicTheme.spacing(8, 0, 0, 8)};
   }
 
   &[data-enddate='true'] {
+    color: ${basicTheme.colors.primary};
     background-color: ${basicTheme.colors.blue};
     border-radius: ${basicTheme.spacing(0, 8, 8, 0)};
   }

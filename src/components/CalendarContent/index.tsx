@@ -45,9 +45,9 @@ export const CalendarContent = ({
           data-startdate={isStartDate}
           data-enddate={isEndDate}
           onClick={setSelectedDateValue?.(type, formattedDate)}
-          onMouseEnter={handleMouseEnter?.(formattedDate)}
-          onMouseUp={handleMouseUp?.(formattedDate)}
           onMouseDown={handleMouseDown?.(formattedDate)}
+          onMouseUp={handleMouseUp?.(formattedDate)}
+          onMouseEnter={handleMouseEnter?.(formattedDate)}
         >
           <DateCellText>{day}</DateCellText>
         </DateCell>

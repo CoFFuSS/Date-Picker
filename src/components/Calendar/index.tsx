@@ -14,11 +14,11 @@ import { CalendarContent } from '../CalendarContent';
 export const Calendar = () => {
   const {
     setSelectedDateValue,
-    handleMouseUp,
-    handleMouseDown,
-    handleMouseEnter,
     startDate,
     endDate,
+    handleMouseDown,
+    handleMouseEnter,
+    handleMouseUp,
   } = useContext(InputLogicContext);
 
   const { dates, showWeekends, startWeekWith, isShown, selectedValue, todo } =
