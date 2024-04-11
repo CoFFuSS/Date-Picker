@@ -1,26 +1,25 @@
 import { useMemo, useState } from 'react';
 
 import { StartDays } from '@/constants/startDays';
-import { inputLogicDecorator } from '@/hocs/inputLogicDecorator';
-import { currentDate } from '@/utils/getCurrentDate';
 import { splitDate } from '@/utils/splitDate';
 import { getCalendarData } from '@/utils/getCalendarData';
 import { Calendar } from '@/components/Calendar';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { serviceDecorator } from '@/hocs/serviceDecorator';
-import { CalendarWithPickerProps } from '@/types/interfaces';
+import { CalendarWithRangeProps } from '@/types/interfaces';
 import { CalendarContext } from '@/context/CalendarContext';
+import { rangePickerLogicDecorator } from '@/hocs/rangePickerLogicDecorator';
 
-export const CalendarWithPicker = ({
-  value,
+export const CalendarWithRangePicker = ({
+  fromDate,
+  toDate,
   startOfWeek = StartDays.Monday,
   showHolidays = true,
   showWeekends = true,
-  min = '',
-  max = '',
-}: CalendarWithPickerProps) => {
-  const [inputDate, setInputDate] = useState(value || currentDate);
-  const [selectedValue, setSelectedValue] = useState(value || inputDate);
+}: CalendarWithRangeProps) => {
+  const [startDate, setStartDate] = useState<string>(fromDate);
+  const [endDate, setEndDate] = useState<string>(toDate);
+  const [inputDate, setInputDate] = useState(fromDate);
   const [isShown, setIsShown] = useState<boolean>(true);
   const { day, month, year } = splitDate(inputDate);
 
@@ -36,29 +35,30 @@ export const CalendarWithPicker = ({
       showWeekends,
       startWeekWith: startOfWeek,
       inputDate,
-      selectedValue,
+      selectedValue: '',
       isShown,
       todo: [],
     }),
-    [dates, inputDate, isShown, selectedValue, showHolidays, showWeekends, startOfWeek],
+    [dates, inputDate, isShown, showHolidays, showWeekends, startOfWeek],
   );
 
   const CalendarWithLogic = serviceDecorator(Calendar, day, month, year);
-  const CalendarWithInput = inputLogicDecorator(
+  const CalendarWithRange = rangePickerLogicDecorator(
     CalendarWithLogic,
+    startDate,
+    endDate,
     inputDate,
+    setStartDate,
+    setEndDate,
     setInputDate,
-    setSelectedValue,
     setIsShown,
-    max,
-    min,
   );
 
   return (
     <CalendarContext.Provider value={contextValue}>
       <div>
         <ErrorBoundary>
-          <CalendarWithInput />
+          <CalendarWithRange />
         </ErrorBoundary>
       </div>
     </CalendarContext.Provider>

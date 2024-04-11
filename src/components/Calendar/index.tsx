@@ -12,7 +12,9 @@ import { CalendarContainer } from './styled';
 import { DateSwitcher } from '../DateSwitcher';
 
 export const Calendar = () => {
-  const { setSelectedDateValue } = useContext(InputLogicContext);
+  const { setSelectedDateValue, handleMouseUp, handleMouseDown, handleMouseEnter } =
+    useContext(InputLogicContext);
+
   const { dates, showWeekends, startWeekWith, isShown, selectedValue, todo } =
     useContext(CalendarContext);
 
@@ -30,6 +32,9 @@ export const Calendar = () => {
         selectedDay={selectedValue}
         setSelectedDateValue={setSelectedDateValue}
         todo={todo}
+        handleMouseUp={handleMouseUp}
+        handleMouseDown={handleMouseDown}
+        handleMouseEnter={handleMouseEnter}
       />
     </CalendarContainer>
   );

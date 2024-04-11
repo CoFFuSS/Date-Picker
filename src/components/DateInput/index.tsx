@@ -1,10 +1,9 @@
-import { ChangeEvent, useState, KeyboardEvent, useContext, useRef } from 'react';
+import { ChangeEvent, useState, KeyboardEvent, useRef } from 'react';
 
 import CalendarIcon from '@/assets/images/CalendarIcon.svg';
 import CloseCalendarIcon from '@/assets/images/CloseCalendarIcon.svg';
 import { DateInputProps } from '@/types/interfaces';
 import { validateInputDate } from '@/utils/isValideDate';
-import { CalendarContext } from '@/context/CalendarContext';
 
 import {
   CalendarIconContainer,
@@ -15,10 +14,9 @@ import {
   Wrapper,
 } from './styled';
 
-export const DateInput = ({ onCalendarIconClick, onSubmitDate }: DateInputProps) => {
+export const DateInput = ({ onCalendarIconClick, onSubmitDate, inputDate }: DateInputProps) => {
   const [isValid, setIsValid] = useState<boolean>(true);
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
-  const { inputDate } = useContext(CalendarContext);
   const [inputValue, setInputValue] = useState<string>(inputDate);
 
   const inputRef = useRef<HTMLInputElement>(null);

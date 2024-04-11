@@ -14,6 +14,9 @@ export const CalendarContent = ({
   selectedDay,
   setSelectedDateValue,
   todo,
+  handleMouseUp,
+  handleMouseDown,
+  handleMouseEnter,
 }: CalendarContentProps) => (
   <DateCellWrapper>
     {dates.map(({ day, month, year, type }) => {
@@ -33,6 +36,9 @@ export const CalendarContent = ({
           data-inthismonth={isInThisMonth}
           data-havetodos={isHaveTodos}
           onClick={setSelectedDateValue?.(type, formattedDate)}
+          onMouseEnter={handleMouseEnter?.(formattedDate)}
+          onMouseUp={handleMouseUp?.(formattedDate)}
+          onMouseDown={handleMouseDown?.(formattedDate)}
         >
           <DateCellText>{day}</DateCellText>
         </DateCell>

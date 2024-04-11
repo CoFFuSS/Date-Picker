@@ -69,6 +69,9 @@ export const inputLogicDecorator =
       () => ({
         setSelectedDateValue,
         onSwitchMonth,
+        handleMouseUp: () => () => {},
+        handleMouseDown: () => () => {},
+        handleMouseEnter: () => () => {},
       }),
       [],
     );
@@ -79,6 +82,7 @@ export const inputLogicDecorator =
           <DateInput
             onSubmitDate={onSubmitDate}
             onCalendarIconClick={onCalendarIconClick}
+            inputDate={inputDate}
           />
           {!isDateValid && (
             <h1>

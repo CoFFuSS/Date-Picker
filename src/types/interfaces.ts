@@ -10,18 +10,6 @@ export interface CellDate {
   type: CellTypes;
 }
 
-export interface HolidaysApiResponse {
-  date: string;
-  localName: string;
-  name: string;
-  countryCode: string;
-  fixed: boolean;
-  global: boolean;
-  countries: string[];
-  lounchYear: number;
-  types: string[];
-}
-
 export interface CalendarHeaderProps {
   startWeekWith: StartDays;
 }
@@ -29,6 +17,7 @@ export interface CalendarHeaderProps {
 export interface DateInputProps {
   onSubmitDate: (inputValue: string) => void;
   onCalendarIconClick: Dispatch<SetStateAction<boolean>>;
+  inputDate: string;
 }
 
 export interface DateSwitcherProps {
@@ -45,27 +34,23 @@ export interface CalendarContentProps {
     formattedDate: string,
   ) => MouseEventHandler<HTMLDivElement | undefined>;
   todo: Todo[];
-}
-
-export interface CalendarProps extends CalendarContentProps {
-  isShown: boolean;
-  startWeekWith: StartDays;
-}
-
-export interface ServiceDecoratorProps extends CalendarProps {
-  showHolidays: boolean;
-  year?: number;
-  month?: number;
-  day?: number;
-}
-
-export interface InputLogicDecoratorProps extends ServiceDecoratorProps {
-  min?: string;
-  max?: string;
+  handleMouseUp: (data: string) => () => void;
+  handleMouseDown: (data: string) => () => void;
+  handleMouseEnter: (data: string) => () => void;
 }
 
 export interface CalendarWithPickerProps {
   value: string;
+  startOfWeek: StartDays;
+  showHolidays: boolean;
+  showWeekends: boolean;
+  min?: string;
+  max?: string;
+}
+
+export interface CalendarWithRangeProps {
+  fromDate: string;
+  toDate: string;
   startOfWeek: StartDays;
   showHolidays: boolean;
   showWeekends: boolean;
