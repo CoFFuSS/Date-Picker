@@ -21,3 +21,23 @@ export const validateInputDate = (
     setIsEmpty(inputValue.length < 1);
   }
 };
+
+export const isValideRange = (startDate: string, endDate: string) => {
+  const [startDay, startMonth, startYear] = startDate.split('.').map(Number);
+  const [endDay, endMonth, endYear] = endDate.split('.').map(Number);
+
+  const fromDate = new Date(startYear, startMonth - 1, startDay);
+  const toDate = new Date(endYear, endMonth - 1, endDay);
+
+  return fromDate < toDate;
+};
+
+export const validateInputInRange = (
+  setEndDate: Dispatch<SetStateAction<string>>,
+  setError: Dispatch<SetStateAction<string>>,
+  startDate: string,
+  endDate: string,
+) => {
+  if (isValideRange(startDate, endDate)) setEndDate(endDate);
+  else setError('Invalid range');
+};

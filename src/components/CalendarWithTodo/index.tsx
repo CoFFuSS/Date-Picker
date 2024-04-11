@@ -10,8 +10,10 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { serviceDecorator } from '@/hocs/serviceDecorator';
 import { CalendarWithPickerProps } from '@/types/interfaces';
 import { CalendarContext } from '@/context/CalendarContext';
+import { todoLogicDecorator } from '@/hocs/todoLogicDecorator';
+import { useLocalStorageTodo } from '@/hooks/useLocalStorageTodo';
 
-export const CalendarWithPicker = ({
+export const CalendarWithTodo = ({
   value,
   startOfWeek = StartDays.Monday,
   showHolidays = true,
@@ -23,6 +25,7 @@ export const CalendarWithPicker = ({
   const [selectedValue, setSelectedValue] = useState(value || inputDate);
   const [isShown, setIsShown] = useState<boolean>(true);
   const { day, month, year } = splitDate(inputDate);
+  const [todo, addTodo, removeTodo] = useLocalStorageTodo();
 
   const dates = useMemo(
     () => getCalendarData(year, month, startOfWeek),
@@ -38,9 +41,9 @@ export const CalendarWithPicker = ({
       inputDate,
       selectedValue,
       isShown,
-      todo: [],
+      todo,
     }),
-    [dates, inputDate, isShown, selectedValue, showHolidays, showWeekends, startOfWeek],
+    [dates, inputDate, isShown, selectedValue, showHolidays, showWeekends, startOfWeek, todo],
   );
 
   const CalendarWithLogic = serviceDecorator(Calendar, day, month, year);
@@ -54,11 +57,13 @@ export const CalendarWithPicker = ({
     min,
   );
 
+  const CalendarWithTodoPicker = todoLogicDecorator(CalendarWithInput, todo, addTodo, removeTodo);
+
   return (
     <CalendarContext.Provider value={contextValue}>
       <div>
         <ErrorBoundary>
-          <CalendarWithInput />
+          <CalendarWithTodoPicker />
         </ErrorBoundary>
       </div>
     </CalendarContext.Provider>

@@ -12,6 +12,10 @@ export const THEME_COLORS = {
   blue: '#2F80ED',
   lightPeachy: '#ffccb8',
   green: '#2ECC40',
+  pink: '#EE3377',
+  startDate: '#2f80ed99',
+  inRange: '#2F80ED1A',
+  cellHover: '#F1F1F1',
 } as const;
 
 export const THEME_FONT_FAMILIES = {

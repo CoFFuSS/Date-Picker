@@ -1,17 +1,17 @@
 import { StartDays } from '@/constants/startDays';
 
-import { CalendarWithPicker } from '.';
+import { CalendarWithTodo } from '.';
 
 export default {
-  title: 'CalendarWithPicker',
-  component: CalendarWithPicker,
+  title: 'CalendarWithTodo',
+  component: CalendarWithTodo,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },
 };
 
-export const DefaultDatePicker = {
+export const DefaultTodoPicker = {
   args: {
     value: '07.04.2024',
     startOfWeek: StartDays.Monday,

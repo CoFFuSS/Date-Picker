@@ -5,11 +5,15 @@ import { updateDate } from '@/utils/updateDate';
 import { CellTypes } from '@/constants/cellTypes';
 import { DateInput } from '@/components/DateInput';
 import { InputLogicContext } from '@/context/inputLogicContext';
+import { splitDate } from '@/utils/splitDate';
+import { getFormattedDate } from '@/utils/getFormattedDate';
 
 export const inputLogicDecorator =
   (
     Component: ComponentType<{}>,
+    inputDate: string,
     setInputValue: Dispatch<SetStateAction<string>>,
+    setSelectedValue: Dispatch<SetStateAction<string>>,
     setIsShown: Dispatch<SetStateAction<boolean>>,
     max: string | undefined,
     min: string | undefined,
@@ -18,16 +22,36 @@ export const inputLogicDecorator =
     const [isDateValid, setIsDateValid] = useState<boolean>(true);
 
     const onSubmitDate = (value: string) => {
-      if (!isDateInRange(value, max, min)) {
+      if (!isDateInRange(value, min, max)) {
         setIsDateValid(false);
       } else {
         setIsDateValid(true);
         setInputValue(value);
+        setSelectedValue(value);
       }
     };
 
     const setSelectedDateValue = (type: CellTypes, value: string) => () => {
       const newDate = updateDate(value, type);
+
+      if (!isDateInRange(newDate, min, max)) {
+        setIsDateValid(false);
+      } else {
+        setIsDateValid(true);
+        setInputValue(newDate);
+        setSelectedValue(value);
+      }
+    };
+
+    const onSwitchMonth = (type: CellTypes) => () => {
+      const { day, month, year } = splitDate(inputDate);
+
+      const newValue =
+        type === CellTypes.Next
+          ? getFormattedDate(day, month + 1, year)
+          : getFormattedDate(day, month - 1, year);
+
+      const newDate = updateDate(newValue, type);
 
       if (!isDateInRange(newDate, min, max)) {
         setIsDateValid(false);
@@ -44,6 +68,10 @@ export const inputLogicDecorator =
     const contextValue = useMemo(
       () => ({
         setSelectedDateValue,
+        onSwitchMonth,
+        handleMouseUp: () => () => {},
+        handleMouseDown: () => () => {},
+        handleMouseEnter: () => () => {},
       }),
       [],
     );
@@ -54,6 +82,7 @@ export const inputLogicDecorator =
           <DateInput
             onSubmitDate={onSubmitDate}
             onCalendarIconClick={onCalendarIconClick}
+            inputDate={inputDate}
           />
           {!isDateValid && (
             <h1>

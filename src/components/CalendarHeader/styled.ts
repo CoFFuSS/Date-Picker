@@ -10,12 +10,13 @@ export const Container = styled.div`
 `;
 
 export const HeaderCell = styled.div`
-  gap: ${basicTheme.spacing(10)};
   display: flex;
-  height: ${basicTheme.spacing(32)};
-  width: ${basicTheme.spacing(32)};
+  gap: ${basicTheme.spacing(10)};
   align-items: center;
   justify-content: center;
+
+  width: ${basicTheme.spacing(32)};
+  height: ${basicTheme.spacing(32)};
 `;
 
 export const HeaderCellText = styled.p`

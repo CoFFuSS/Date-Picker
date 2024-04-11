@@ -1,23 +1,22 @@
 import { StartDays } from '@/constants/startDays';
 
-import { CalendarWithPicker } from '.';
+import { CalendarWithRangePicker } from '.';
 
 export default {
-  title: 'CalendarWithPicker',
-  component: CalendarWithPicker,
+  title: 'CalendarWithRange',
+  component: CalendarWithRangePicker,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },
 };
 
-export const DefaultDatePicker = {
+export const DefaultRangePicker = {
   args: {
-    value: '07.04.2024',
+    fromDate: '05.04.2024',
+    toDate: '09.04.2024',
     startOfWeek: StartDays.Monday,
     showHolidays: true,
     showWeekends: true,
-    min: '10.12.2022',
-    max: '10.02.2025',
   },
 };

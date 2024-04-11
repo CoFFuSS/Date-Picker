@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, KeyboardEvent } from 'react';
+import { ChangeEvent, useState, KeyboardEvent, useRef } from 'react';
 
 import CalendarIcon from '@/assets/images/CalendarIcon.svg';
 import CloseCalendarIcon from '@/assets/images/CloseCalendarIcon.svg';
@@ -14,14 +14,24 @@ import {
   Wrapper,
 } from './styled';
 
-export const DateInput = ({ onCalendarIconClick, onSubmitDate }: DateInputProps) => {
+export const DateInput = ({ onCalendarIconClick, onSubmitDate, inputDate }: DateInputProps) => {
   const [isValid, setIsValid] = useState<boolean>(true);
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>(inputDate);
 
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => () => {
-    setInputValue(e.target.value);
-    validateInputDate(inputValue, setIsValid, setIsEmpty);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const inputValueRef = useRef(inputDate);
+
+  const changeInputDate = (e: ChangeEvent<HTMLInputElement>) => {
+    const valueFromInput = e.target.value;
+    const formattedValue = valueFromInput
+      .replace(/\D/g, '')
+      .replace(/(\d{2})(\d{2})(\d{4})/, '$1.$2.$3')
+      .slice(0, 10);
+
+    setInputValue(formattedValue);
+    inputValueRef.current = formattedValue;
+    validateInputDate(formattedValue, setIsValid, setIsEmpty);
   };
 
   const handleCalendarClick = () => {
@@ -32,6 +42,10 @@ export const DateInput = ({ onCalendarIconClick, onSubmitDate }: DateInputProps)
     setIsValid(true);
     setIsEmpty(true);
     setInputValue('');
+  };
+
+  const focusInput = () => {
+    inputRef.current?.focus();
   };
 
   const handleEnterPress = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -47,23 +61,27 @@ export const DateInput = ({ onCalendarIconClick, onSubmitDate }: DateInputProps)
         <CalendarIconContainer onClick={handleCalendarClick}>
           <CalendarIcon />
         </CalendarIconContainer>
-        <InputLabel htmlFor='DateInput'>
+        <InputLabel
+          htmlFor='DateInput'
+          onClick={focusInput}
+        >
           <DateInputField
             id='DateInput'
             type='text'
             value={inputValue}
-            onChange={onInputChange}
+            ref={inputRef}
+            onChange={changeInputDate}
             placeholder='Choose Date'
             onKeyDown={handleEnterPress}
           />
         </InputLabel>
-        {isEmpty && (
+        {!isEmpty && (
           <CalendarIconContainer onClick={handleClearInput}>
             <CloseCalendarIcon />
           </CalendarIconContainer>
         )}
       </Container>
-      {isValid && <ErrorValidation>You enter invalid date</ErrorValidation>}
+      {!isValid && <ErrorValidation>You enter invalid date</ErrorValidation>}
     </Wrapper>
   );
 };
