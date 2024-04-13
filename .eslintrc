@@ -1,5 +1,5 @@
 {
-    "plugins": ["react", "sonarjs", "import", "jsx-a11y", "@typescript-eslint", "prettier", "cypress"],
+    "plugins": ["react", "sonarjs", "import", "jsx-a11y", "@typescript-eslint", "prettier"],
     "extends": [
       "airbnb",
       "airbnb-typescript",
@@ -9,12 +9,10 @@
       "plugin:import/recommended",
       "plugin:jsx-a11y/recommended",
       "plugin:sonarjs/recommended",
-      "plugin:cypress/recommended"
     ],
     "env": {
       "browser": true,
-      "es2021": true,
-      "cypress/globals": true
+      "es2021": true
     },
     "globals": {
       "JSX": true
@@ -34,10 +32,9 @@
         "typescript": {}
       }
     },
-    "ignorePatterns": ["cypress.config.ts", "**/*.cy.ts", "cypress/support/*.ts"],
 
     "rules": {
-          "import/no-unresolved": "error",
+        "import/no-unresolved": "error",
         "import/no-extraneous-dependencies": [
           "error",
           {
@@ -50,7 +47,7 @@
         ],
 
       "react/jsx-key": "error",
-      "react/react-in-jsx-scope": 0, // disabled to prevent import React error for storybook
+      "react/react-in-jsx-scope": 0,
       "react/jsx-props-no-spreading": 0,
       "react/jsx-no-useless-fragment": 0,
       "react/jsx-filename-extension": 0,

@@ -19,6 +19,7 @@ export interface DateInputProps {
   onCalendarIconClick: Dispatch<SetStateAction<boolean>>;
   onCalendarClearIconClick?: () => void;
   inputDate: string;
+  testId: string;
 }
 
 export interface DateSwitcherProps {

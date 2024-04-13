@@ -58,5 +58,5 @@ export const useHolidayRequest = (
     fetchData();
   }, [year, showHolidays]);
 
-  return [response, apiError];
+  return [response, apiError] as const;
 };

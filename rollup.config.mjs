@@ -6,6 +6,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import svgr from '@svgr/rollup';
+import alias from '@rollup/plugin-alias';
 
 export default {
   input: 'src/index.ts',
@@ -34,10 +35,22 @@ export default {
   plugins: [
     peerDepsExternal(),
     resolve(),
+    alias({
+      entries: [
+        {
+          find: '@/',
+          replacement: './src/',
+        },
+      ],
+    }),
     svgr(),
     commonjs(),
-    typescript(),
-    babel({ babelHelpers: 'runtime', extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
+    typescript({ tsconfig: './tsconfig.json' }),
+    babel({
+      exclude: 'node_modules/**',
+      presets: ['@babel/preset-env', '@babel/preset-typescript', '@babel/preset-react'],
+      plugins: ['styled-components'],
+    }),
     terser(),
   ],
   external: ['react', 'react-dom'],

@@ -20,7 +20,7 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "checkJs": true,
-    "outDir": "build",
+    "outDir": "dist",
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -31,27 +31,18 @@
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",
-      "types": ["cypress"]
+      "types": ["node"]
     }
   },
 
-  "exclude": [
-    "node_modules",
-    "dist",
-    "build",
-    ".vscode",
-    "./cypress.config.ts",
-    "cypress",
-    "**/*.cy.tsx",
-  ],
+  "exclude": ["node_modules", "dist", "build", ".vscode"],
 
   "include": [
-    "rollup.config.ts",
+    "rollup.config.mjs",
+    "jest.config.ts",
     "typings/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/mocks/browser.js",
-    "src/mocks/handlers.js",
-    "cypress/support/**/*.ts"
+    "src/mocks/__mocks__/svgrMock.ts"
   ]
 }

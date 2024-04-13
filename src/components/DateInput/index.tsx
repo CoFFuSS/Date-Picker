@@ -19,6 +19,7 @@ export const DateInput = ({
   onSubmitDate,
   onCalendarClearIconClick,
   inputDate,
+  testId,
 }: DateInputProps) => {
   const [isValid, setIsValid] = useState<boolean>(true);
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
@@ -79,6 +80,7 @@ export const DateInput = ({
             onChange={changeInputDate}
             placeholder='Choose Date'
             onKeyDown={handleEnterPress}
+            data-testid={testId}
           />
         </InputLabel>
         {!isEmpty && (

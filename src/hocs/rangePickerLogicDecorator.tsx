@@ -113,6 +113,7 @@ export const rangePickerLogicDecorator =
           onCalendarIconClick={onCalendarIconClick}
           onCalendarClearIconClick={onCalendarClearIconClick}
           inputDate={startDate}
+          testId='start-input'
         />
         Select End Date
         <DateInput
@@ -120,6 +121,7 @@ export const rangePickerLogicDecorator =
           onCalendarIconClick={onCalendarIconClick}
           onCalendarClearIconClick={onCalendarClearIconClick}
           inputDate={endDate}
+          testId='end-input'
         />
         {error && <h1>{error}</h1>}
         <Component />

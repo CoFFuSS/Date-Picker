@@ -85,6 +85,7 @@ export const inputLogicDecorator =
             onSubmitDate={onSubmitDate}
             onCalendarIconClick={onCalendarIconClick}
             inputDate={inputDate}
+            testId='input'
           />
           {!isDateValid && (
             <h1>
