@@ -10,6 +10,7 @@ import { CalendarContainer } from './styled';
 
 import { DateSwitcher } from '../DateSwitcher';
 import { CalendarContent } from '../CalendarContent';
+import { CalendarYearPicker } from '../CalendarYearPicker';
 
 export const Calendar = () => {
   const {
@@ -19,6 +20,7 @@ export const Calendar = () => {
     handleMouseDown,
     handleMouseEnter,
     handleMouseUp,
+    isSelectingYear,
   } = useContext(InputLogicContext);
 
   const { dates, showWeekends, startWeekWith, isShown, selectedValue, todo } =
@@ -33,20 +35,26 @@ export const Calendar = () => {
         month={monthName}
         year={String(year)}
       />
-      <CalendarHeader startWeekWith={startWeekWith} />
-      <CalendarContent
-        dates={dates}
-        holidays={holidays}
-        showWeekends={showWeekends}
-        selectedDay={selectedValue}
-        setSelectedDateValue={setSelectedDateValue}
-        todo={todo}
-        handleMouseUp={handleMouseUp}
-        handleMouseDown={handleMouseDown}
-        handleMouseEnter={handleMouseEnter}
-        startDate={startDate}
-        endDate={endDate}
-      />
+      {isSelectingYear ? (
+        <CalendarYearPicker />
+      ) : (
+        <>
+          <CalendarHeader startWeekWith={startWeekWith} />
+          <CalendarContent
+            dates={dates}
+            holidays={holidays}
+            showWeekends={showWeekends}
+            selectedDay={selectedValue}
+            setSelectedDateValue={setSelectedDateValue}
+            todo={todo}
+            handleMouseUp={handleMouseUp}
+            handleMouseDown={handleMouseDown}
+            handleMouseEnter={handleMouseEnter}
+            startDate={startDate}
+            endDate={endDate}
+          />
+        </>
+      )}
     </CalendarContainer>
   );
 };

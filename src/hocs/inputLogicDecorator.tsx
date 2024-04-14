@@ -57,7 +57,7 @@ export const inputLogicDecorator =
     );
 
     const onSwitchHeaderClick = () => {
-      setIsSelectingYear(true);
+      setIsSelectingYear((prev) => !prev);
     };
 
     const onCalendarIconClick = () => {
