@@ -24,6 +24,7 @@ export interface DateInputProps {
 
 export interface DateSwitcherProps {
   month: string;
+  year: string;
 }
 
 export interface CalendarContentProps {

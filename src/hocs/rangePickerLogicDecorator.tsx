@@ -1,4 +1,4 @@
-import { ComponentType, Dispatch, SetStateAction, useMemo, useState } from 'react';
+import { ComponentType, Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 
 import { DateInput } from '@/components/DateInput';
 import { validateInputInRange } from '@/utils/isValidDate';
@@ -86,16 +86,22 @@ export const rangePickerLogicDecorator =
       setIsSelecting(false);
     };
 
-    const handleMouseEnter = (date: string) => () => {
-      if (isSelecting) {
-        setEndDate(date);
-      }
-    };
+    const handleMouseEnter = useCallback(
+      (date: string) => () => {
+        if (isSelecting) {
+          setEndDate(date);
+        }
+      },
+      [isSelecting],
+    );
 
     const contextValue = useMemo(
       () => ({
         setSelectedDateValue: () => () => {},
         onSwitchMonth,
+        onSwitchHeaderClick: () => {},
+        onSwitchYear: () => {},
+        isSelectingYear: false,
         startDate,
         endDate,
         handleMouseUp,

@@ -29,7 +29,10 @@ export const Calendar = () => {
 
   return (
     <CalendarContainer isShown={isShown}>
-      <DateSwitcher month={monthName} />
+      <DateSwitcher
+        month={monthName}
+        year={String(year)}
+      />
       <CalendarHeader startWeekWith={startWeekWith} />
       <CalendarContent
         dates={dates}

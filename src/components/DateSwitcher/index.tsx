@@ -8,23 +8,24 @@ import { InputLogicContext } from '@/context/inputLogicContext';
 
 import { Container, DateSelector, SwitcherDateButton, SwitcherDateLabel } from './styled';
 
-export const DateSwitcher = ({ month }: DateSwitcherProps) => {
-  const { onSwitchMonth } = useContext(InputLogicContext);
+export const DateSwitcher = ({ month, year }: DateSwitcherProps) => {
+  const { isSelectingYear, onSwitchHeaderClick, onSwitchDate } = useContext(InputLogicContext);
 
   return (
     <Container>
-      <DateSelector onClick={onSwitchMonth(CellTypes.Prev)}>
+      <DateSelector onClick={onSwitchDate(CellTypes.Prev)}>
         <SelectPrevDateIcon />
       </DateSelector>
       <SwitcherDateLabel htmlFor='DateSwitcher'>
         <SwitcherDateButton
           id='DateSwitcher'
           type='submit'
+          onClick={onSwitchHeaderClick}
         >
-          {month}
+          {!isSelectingYear ? month : year}
         </SwitcherDateButton>
       </SwitcherDateLabel>
-      <DateSelector onClick={onSwitchMonth(CellTypes.Next)}>
+      <DateSelector onClick={onSwitchDate(CellTypes.Next)}>
         <SelectNextDateIcon />
       </DateSelector>
     </Container>

@@ -29,3 +29,23 @@ export const updateDate = (value: string, type: CellTypes) => {
 
   return getFormattedDate(day, newMonth, newYear);
 };
+
+export const switchDate = (value: string, type: CellTypes, isSelectingYear: boolean) => {
+  const { day, month, year } = splitDate(value);
+
+  if (isSelectingYear) {
+    const newValue =
+      type === CellTypes.Next
+        ? getFormattedDate(day, month, year + 1)
+        : getFormattedDate(day, month, year - 1);
+
+    return updateDate(newValue, type);
+  }
+
+  const newValue =
+    type === CellTypes.Next
+      ? getFormattedDate(day, month + 1, year)
+      : getFormattedDate(day, month - 1, year);
+
+  return updateDate(newValue, type);
+};

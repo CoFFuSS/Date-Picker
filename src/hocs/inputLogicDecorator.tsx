@@ -1,12 +1,10 @@
-import { ComponentType, Dispatch, SetStateAction, useMemo, useState } from 'react';
+import { ComponentType, Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 
 import { isDateInRange } from '@/utils/isDateInRange';
-import { updateDate } from '@/utils/updateDate';
+import { switchDate, updateDate } from '@/utils/updateDate';
 import { CellTypes } from '@/constants/cellTypes';
 import { DateInput } from '@/components/DateInput';
 import { InputLogicContext } from '@/context/inputLogicContext';
-import { splitDate } from '@/utils/splitDate';
-import { getFormattedDate } from '@/utils/getFormattedDate';
 
 export const inputLogicDecorator =
   (
@@ -20,6 +18,7 @@ export const inputLogicDecorator =
   ) =>
   () => {
     const [isDateValid, setIsDateValid] = useState<boolean>(true);
+    const [isSelectingYear, setIsSelectingYear] = useState<boolean>(false);
 
     const onSubmitDate = (value: string) => {
       if (!isDateInRange(value, min, max)) {
@@ -43,22 +42,22 @@ export const inputLogicDecorator =
       }
     };
 
-    const onSwitchMonth = (type: CellTypes) => () => {
-      const { day, month, year } = splitDate(inputDate);
+    const onSwitchDate = useCallback(
+      (type: CellTypes) => () => {
+        const newDate = switchDate(inputDate, type, isSelectingYear);
 
-      const newValue =
-        type === CellTypes.Next
-          ? getFormattedDate(day, month + 1, year)
-          : getFormattedDate(day, month - 1, year);
+        if (!isDateInRange(newDate, min, max)) {
+          setIsDateValid(false);
+        } else {
+          setIsDateValid(true);
+          setInputValue(newDate);
+        }
+      },
+      [isSelectingYear],
+    );
 
-      const newDate = updateDate(newValue, type);
-
-      if (!isDateInRange(newDate, min, max)) {
-        setIsDateValid(false);
-      } else {
-        setIsDateValid(true);
-        setInputValue(newDate);
-      }
+    const onSwitchHeaderClick = () => {
+      setIsSelectingYear(true);
     };
 
     const onCalendarIconClick = () => {
@@ -68,14 +67,16 @@ export const inputLogicDecorator =
     const contextValue = useMemo(
       () => ({
         setSelectedDateValue,
-        onSwitchMonth,
+        onSwitchDate,
+        onSwitchHeaderClick,
+        isSelectingYear,
         startDate: '',
         endDate: '',
         handleMouseUp: () => () => {},
         handleMouseDown: () => () => {},
         handleMouseEnter: () => () => {},
       }),
-      [],
+      [isSelectingYear, onSwitchDate],
     );
 
     return (

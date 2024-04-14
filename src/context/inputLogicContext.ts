@@ -4,7 +4,9 @@ import { CellTypes } from '@/constants/cellTypes';
 
 export const InputLogicContext = createContext({
   setSelectedDateValue: (_type: CellTypes, _formattedDate: string) => () => {},
-  onSwitchMonth: (_type: CellTypes) => () => {},
+  onSwitchDate: (_type: CellTypes) => () => {},
+  onSwitchHeaderClick: () => {},
+  isSelectingYear: false,
   startDate: '',
   endDate: '',
   handleMouseUp: (_value: string) => () => {},
