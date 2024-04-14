@@ -3,9 +3,7 @@ import { ComponentType, Dispatch, SetStateAction, useCallback, useMemo, useState
 import { DateInput } from '@/components/DateInput';
 import { validateInputInRange } from '@/utils/isValidDate';
 import { CellTypes } from '@/constants/cellTypes';
-import { splitDate } from '@/utils/splitDate';
-import { getFormattedDate } from '@/utils/getFormattedDate';
-import { updateDate } from '@/utils/updateDate';
+import { switchDate } from '@/utils/updateDate';
 import { InputLogicContext } from '@/context/inputLogicContext';
 
 export const rangePickerLogicDecorator =
@@ -22,6 +20,7 @@ export const rangePickerLogicDecorator =
   () => {
     const [error, setError] = useState<string>('');
     const [isSelecting, setIsSelecting] = useState<boolean>(false);
+    const [isSelectingYear, setIsSelectingYear] = useState<boolean>(false);
 
     const handleStartDateEnter = (startValue: string) => {
       setInputDate(startValue);
@@ -32,17 +31,17 @@ export const rangePickerLogicDecorator =
       validateInputInRange(setEndDate, setError, startDate, endValue);
     };
 
-    const onSwitchMonth = (type: CellTypes) => () => {
-      const { day, month, year } = splitDate(inputDate);
+    const onSwitchDate = useCallback(
+      (type: CellTypes) => () => {
+        const newDate = switchDate(inputDate, type, isSelectingYear);
 
-      const newValue =
-        type === CellTypes.Next
-          ? getFormattedDate(day, month + 1, year)
-          : getFormattedDate(day, month - 1, year);
+        setInputDate(newDate);
+      },
+      [isSelectingYear],
+    );
 
-      const newDate = updateDate(newValue, type);
-
-      setInputDate(newDate);
+    const onSwitchHeaderClick = () => {
+      setIsSelectingYear(true);
     };
 
     const onCalendarIconClick = () => {
@@ -98,17 +97,16 @@ export const rangePickerLogicDecorator =
     const contextValue = useMemo(
       () => ({
         setSelectedDateValue: () => () => {},
-        onSwitchMonth,
-        onSwitchHeaderClick: () => {},
-        onSwitchYear: () => {},
-        isSelectingYear: false,
+        onSwitchDate,
+        onSwitchHeaderClick,
+        isSelectingYear,
         startDate,
         endDate,
         handleMouseUp,
         handleMouseDown,
         handleMouseEnter,
       }),
-      [handleMouseEnter],
+      [handleMouseEnter, isSelectingYear, onSwitchDate],
     );
 
     return (

@@ -1,65 +1,77 @@
-import styled from 'styled-components';
-
-import { basicTheme } from '@/theme';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: ${basicTheme.spacing(250)};
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    width: ${theme.spacing(250)};
+  `}
 `;
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: row;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
 
-  width: ${basicTheme.spacing(250)};
-  height: ${basicTheme.spacing(42)};
+    width: ${theme.spacing(250)};
+    height: ${theme.spacing(42)};
 
-  color: ${basicTheme.colors.secondary};
+    color: ${theme.colors.secondary};
 
-  border: ${basicTheme.spacing(1)} solid ${basicTheme.colors.gray};
-  border-radius: ${basicTheme.spacing(8)};
+    border: ${theme.spacing(1)} solid ${theme.colors.gray};
+    border-radius: ${theme.spacing(8)};
+  `}
 `;
 
 export const CalendarIconContainer = styled.div`
-  cursor: pointer;
-  width: ${basicTheme.spacing(16)};
-  height: ${basicTheme.spacing(16)};
-  margin: ${basicTheme.spacing(13, 8, 13, 16)};
+  ${({ theme }) => css`
+    cursor: pointer;
+    width: ${theme.spacing(16)};
+    height: ${theme.spacing(16)};
+    margin: ${theme.spacing(13, 8, 13, 16)};
+  `}
 `;
 
 export const CloseCalendarContainer = styled.div`
-  cursor: pointer;
-  width: ${basicTheme.spacing(14)};
-  height: ${basicTheme.spacing(14)};
-  margin: ${basicTheme.spacing(14, 16, 14, 8)};
+  ${({ theme }) => css`
+    cursor: pointer;
+    width: ${theme.spacing(14)};
+    height: ${theme.spacing(14)};
+    margin: ${theme.spacing(14, 16, 14, 8)};
+  `}
 `;
 
 export const InputLabel = styled.label`
-  display: flex;
-  flex-direction: column;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
 
-  width: ${basicTheme.spacing(172)};
-  height: ${basicTheme.spacing(20)};
-  margin: ${basicTheme.spacing(11)} 0;
+    width: ${theme.spacing(172)};
+    height: ${theme.spacing(20)};
+    margin: ${theme.spacing(11)} 0;
 
-  font-weight: 600;
+    font-weight: 600;
 
-  ${basicTheme.typography.variant.h3};
+    ${theme.typography.variant.h3};
+  `}
 `;
 
 export const DateInputField = styled.input`
-  width: inherit;
-  height: inherit;
-  color: ${basicTheme.colors.mediumDark};
-  border: none;
+  ${({ theme }) => css`
+    width: inherit;
+    height: inherit;
+    color: ${theme.colors.mediumDark};
+    border: none;
 
-  &:placeholder-shown {
-    color: ${basicTheme.colors.gray};
-  }
+    &:placeholder-shown {
+      color: ${theme.colors.gray};
+    }
+  `}
 `;
 
 export const ErrorValidation = styled.div`
-  ${basicTheme.typography.variant.h1}
-  color: ${basicTheme.colors.secondary};
+  ${({ theme }) => css`
+    ${theme.typography.variant.h1}
+    color: ${theme.colors.secondary};
+  `}
 `;

@@ -1,75 +1,87 @@
-import styled from 'styled-components';
-
-import { basicTheme } from '@/theme';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div<{ isShown: boolean }>`
-  position: absolute;
+  ${({ theme, isShown }) => css`
+    position: absolute;
 
-  display: ${(props) => (props.isShown ? 'block' : 'none')};
+    display: ${isShown ? 'block' : 'none'};
 
-  width: ${basicTheme.spacing(400)};
-  margin-top: ${basicTheme.spacing(8)};
-  margin-left: ${basicTheme.spacing(265)};
-  padding: ${basicTheme.spacing(10)};
+    width: ${theme.spacing(400)};
+    margin-top: ${theme.spacing(8)};
+    margin-left: ${theme.spacing(265)};
+    padding: ${theme.spacing(10)};
 
-  border: ${basicTheme.spacing(1)} solid ${basicTheme.colors.lightGray};
-  border-radius: ${basicTheme.spacing(8)};
+    border: ${theme.spacing(1)} solid ${theme.colors.lightGray};
+    border-radius: ${theme.spacing(8)};
+  `}
 `;
 
 export const DateInfoBlock = styled.div`
-  ${basicTheme.typography.variant.h1}
-  color: ${basicTheme.colors.secondary};
+  ${({ theme }) => css`
+    ${theme.typography.variant.h1}
+    color: ${theme.colors.secondary};
+  `}
 `;
 
 export const InputLabel = styled.label`
-  display: flex;
-  flex-direction: column;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
 
-  width: ${basicTheme.spacing(250)};
-  height: ${basicTheme.spacing(20)};
-  margin: ${basicTheme.spacing(11)} 0;
+    width: ${theme.spacing(250)};
+    height: ${theme.spacing(20)};
+    margin: ${theme.spacing(11)} 0;
 
-  font-weight: 600;
+    font-weight: 600;
 
-  ${basicTheme.typography.variant.h3};
+    ${theme.typography.variant.h3};
+  `}
 `;
 
 export const DateInputField = styled.input`
-  width: inherit;
-  height: inherit;
-  color: ${basicTheme.colors.mediumDark};
-  border: none;
+  ${({ theme }) => css`
+    width: inherit;
+    height: inherit;
+    color: ${theme.colors.mediumDark};
+    border: none;
 
-  &:placeholder-shown {
-    color: ${basicTheme.colors.gray};
-  }
+    &:placeholder-shown {
+      color: ${theme.colors.gray};
+    }
+  `}
 `;
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 
-  height: ${basicTheme.spacing(32)};
+    height: ${theme.spacing(32)};
 
-  color: ${basicTheme.colors.secondary};
-  ${basicTheme.typography.variant.h1};
+    color: ${theme.colors.secondary};
+    ${theme.typography.variant.h1};
+  `}
 `;
 
 export const TodoButton = styled.button`
-  cursor: pointer;
+  ${({ theme }) => css`
+    cursor: pointer;
 
-  height: ${basicTheme.spacing(20)};
+    height: ${theme.spacing(20)};
 
-  background-color: ${basicTheme.colors.primary};
-  border: ${basicTheme.spacing(1)} solid ${basicTheme.colors.lightGray};
-  border-radius: ${basicTheme.spacing(8)};
-  ${basicTheme.typography.variant.h4}
+    background-color: ${theme.colors.primary};
+    border: ${theme.spacing(1)} solid ${theme.colors.lightGray};
+    border-radius: ${theme.spacing(8)};
+    ${theme.typography.variant.h4}
+  `}
 `;
 
 export const EmptyError = styled.p`
-  justify-content: center;
-  text-align: center;
-  ${basicTheme.typography.variant.h1};
+  ${({ theme }) => css`
+    justify-content: center;
+    text-align: center;
+    ${theme.typography.variant.h1};
+  `}
 `;

@@ -1,36 +1,42 @@
-import styled from 'styled-components';
-
-import { basicTheme } from '@/theme';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
-  user-select: none;
+  ${({ theme }) => css`
+    user-select: none;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 
-  width: ${basicTheme.spacing(230)};
-  height: ${basicTheme.spacing(29)};
+    width: ${theme.spacing(230)};
+    height: ${theme.spacing(29)};
+  `}
 `;
 
 export const DateSelector = styled.div`
-  cursor: pointer;
-  width: ${basicTheme.spacing(16)};
-  height: ${basicTheme.spacing(16)};
+  ${({ theme }) => css`
+    cursor: pointer;
+    width: ${theme.spacing(16)};
+    height: ${theme.spacing(16)};
+  `}
 `;
 
 export const SwitcherDateLabel = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: ${basicTheme.spacing(19)};
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: ${theme.spacing(19)};
+  `}
 `;
 
 export const SwitcherDateButton = styled.button`
-  cursor: pointer;
-  color: ${basicTheme.colors.secondary};
-  background-color: ${basicTheme.colors.primary};
-  border: none;
-  ${basicTheme.typography.variant.h1};
+  ${({ theme }) => css`
+    cursor: pointer;
+    color: ${theme.colors.secondary};
+    background-color: ${theme.colors.primary};
+    border: none;
+    ${theme.typography.variant.h1};
+  `}
 `;

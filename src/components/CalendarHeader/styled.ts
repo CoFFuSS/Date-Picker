@@ -1,28 +1,32 @@
-import styled from 'styled-components';
-
-import { basicTheme } from '@/theme';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
-  user-select: none;
+  ${({ theme }) => css`
+    user-select: none;
 
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 
-  width: ${basicTheme.spacing(230)};
-  height: ${basicTheme.spacing(32)};
+    width: ${theme.spacing(230)};
+    height: ${theme.spacing(32)};
+  `}
 `;
 
 export const HeaderCell = styled.div`
-  display: flex;
-  gap: ${basicTheme.spacing(10)};
-  align-items: center;
-  justify-content: center;
+  ${({ theme }) => css`
+    display: flex;
+    gap: ${theme.spacing(10)};
+    align-items: center;
+    justify-content: center;
 
-  width: ${basicTheme.spacing(32)};
-  height: ${basicTheme.spacing(32)};
+    width: ${theme.spacing(32)};
+    height: ${theme.spacing(32)};
+  `}
 `;
 
 export const HeaderCellText = styled.p`
-  margin: none;
-  ${basicTheme.typography.variant.h1};
+  ${({ theme }) => css`
+    margin: none;
+    ${theme.typography.variant.h1};
+  `}
 `;

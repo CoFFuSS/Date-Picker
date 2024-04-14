@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 
 import { StartDays } from '@/constants/startDays';
 import { splitDate } from '@/utils/splitDate';
@@ -9,6 +10,7 @@ import { serviceDecorator } from '@/hocs/serviceDecorator';
 import { CalendarWithRangeProps, Todo } from '@/types/interfaces';
 import { CalendarContext } from '@/context/CalendarContext';
 import { rangePickerLogicDecorator } from '@/hocs/rangePickerLogicDecorator';
+import { basicTheme } from '@/theme';
 
 export const CalendarWithRangePicker = ({
   fromDate,
@@ -55,10 +57,12 @@ export const CalendarWithRangePicker = ({
   );
 
   return (
-    <CalendarContext.Provider value={contextValue}>
-      <ErrorBoundary>
-        <CalendarWithRange />
-      </ErrorBoundary>
-    </CalendarContext.Provider>
+    <ThemeProvider theme={basicTheme}>
+      <CalendarContext.Provider value={contextValue}>
+        <ErrorBoundary>
+          <CalendarWithRange />
+        </ErrorBoundary>
+      </CalendarContext.Provider>
+    </ThemeProvider>
   );
 };

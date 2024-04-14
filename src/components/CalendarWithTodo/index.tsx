@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 
 import { StartDays } from '@/constants/startDays';
 import { inputLogicDecorator } from '@/hocs/inputLogicDecorator';
@@ -12,6 +13,7 @@ import { CalendarWithPickerProps } from '@/types/interfaces';
 import { CalendarContext } from '@/context/CalendarContext';
 import { todoLogicDecorator } from '@/hocs/todoLogicDecorator';
 import { useLocalStorageTodo } from '@/hooks/useLocalStorageTodo';
+import { basicTheme } from '@/theme';
 
 export const CalendarWithTodo = ({
   value,
@@ -60,10 +62,12 @@ export const CalendarWithTodo = ({
   const CalendarWithTodoPicker = todoLogicDecorator(CalendarWithInput, todo, addTodo, removeTodo);
 
   return (
-    <CalendarContext.Provider value={contextValue}>
-      <ErrorBoundary>
-        <CalendarWithTodoPicker />
-      </ErrorBoundary>
-    </CalendarContext.Provider>
+    <ThemeProvider theme={basicTheme}>
+      <CalendarContext.Provider value={contextValue}>
+        <ErrorBoundary>
+          <CalendarWithTodoPicker />
+        </ErrorBoundary>
+      </CalendarContext.Provider>
+    </ThemeProvider>
   );
 };

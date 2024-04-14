@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 
 import { StartDays } from '@/constants/startDays';
 import { inputLogicDecorator } from '@/hocs/inputLogicDecorator';
@@ -10,6 +11,7 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { serviceDecorator } from '@/hocs/serviceDecorator';
 import { CalendarWithPickerProps } from '@/types/interfaces';
 import { CalendarContext } from '@/context/CalendarContext';
+import { basicTheme } from '@/theme';
 
 export const CalendarWithPicker = ({
   value,
@@ -56,11 +58,13 @@ export const CalendarWithPicker = ({
 
   return (
     <div>
-      <ErrorBoundary>
-        <CalendarContext.Provider value={contextValue}>
-          <CalendarWithInput />
-        </CalendarContext.Provider>
-      </ErrorBoundary>
+      <ThemeProvider theme={basicTheme}>
+        <ErrorBoundary>
+          <CalendarContext.Provider value={contextValue}>
+            <CalendarWithInput />
+          </CalendarContext.Provider>
+        </ErrorBoundary>
+      </ThemeProvider>
     </div>
   );
 };
