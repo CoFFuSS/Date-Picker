@@ -10,7 +10,13 @@ export const THEME_COLORS = {
   mediumGray: '#AAAAAA',
   lightGray: '#E1E1E1',
   blue: '#2F80ED',
-};
+  lightPeachy: '#ffccb8',
+  green: '#2ECC40',
+  pink: '#EE3377',
+  startDate: '#2f80ed99',
+  inRange: '#2F80ED1A',
+  cellHover: '#F1F1F1',
+} as const;
 
 export const THEME_FONT_FAMILIES = {
   primary: 'Open Sans, sans-serif',
@@ -22,7 +28,7 @@ export const THEME_FONT_WEIGHT = {
   medium: '500',
   semibold: '600',
   bold: '700',
-};
+} as const;
 
 interface TypographyVariants {
   [key: string]: FlattenInterpolation<ThemeProps<DefaultTheme>>;

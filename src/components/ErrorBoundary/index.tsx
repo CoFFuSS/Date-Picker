@@ -2,7 +2,7 @@ import { ErrorInfo, PureComponent } from 'react';
 
 import { Props, State } from './interfaces';
 
-class ErrorBoundary extends PureComponent<Props, State> {
+export class ErrorBoundary extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -30,5 +30,3 @@ class ErrorBoundary extends PureComponent<Props, State> {
     return children;
   }
 }
-
-export default ErrorBoundary;
