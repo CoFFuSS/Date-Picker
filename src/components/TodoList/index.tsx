@@ -63,11 +63,13 @@ export const TodoList = ({
             value={todoText}
             onChange={handleChange}
             placeholder='Enter Todo Text'
+            data-testid='todo-input'
           />
         </InputLabel>
         <TodoButton
           onClick={handleAddTodo}
           type='submit'
+          data-testid='add-todo-button'
         >
           Add Todo
         </TodoButton>
@@ -79,6 +81,7 @@ export const TodoList = ({
           <TodoButton
             onClick={handleRemoveTodo(id)}
             type='submit'
+            data-testid={`remove-todo-button-${id}`}
           >
             Remove Todo
           </TodoButton>
