@@ -1,11 +1,10 @@
+import { DAYS_OF_WEEK } from '@/constants/common';
 import { StartDays } from '@/constants/startDays';
-
-const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 export const getDaysOfWeek = (startWeekWith: StartDays) => {
   if (startWeekWith === 'Monday') {
-    return daysOfWeek;
+    return DAYS_OF_WEEK;
   }
 
-  return [...daysOfWeek.slice(-1), ...daysOfWeek.slice(0, -1)];
+  return [...DAYS_OF_WEEK.slice(-1), ...DAYS_OF_WEEK.slice(0, -1)];
 };

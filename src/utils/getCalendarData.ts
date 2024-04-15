@@ -1,8 +1,7 @@
 import { CellTypes } from '@/constants/cellTypes';
+import { DAYS_IN_WEEK } from '@/constants/common';
 import { StartDays } from '@/constants/startDays';
 import { CellDate } from '@/types/interfaces';
-
-const DAYS_IN_WEEK = 7;
 
 export const getDaysInMonth = (year: number, month: number) => new Date(year, month, 0).getDate();
 
