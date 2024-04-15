@@ -75,3 +75,9 @@ export const ErrorValidation = styled.div`
     color: ${theme.colors.secondary};
   `}
 `;
+
+export const InputError = styled.div`
+  ${({ theme }) => css`
+    ${theme.typography.variant.h1}
+  `}
+`;

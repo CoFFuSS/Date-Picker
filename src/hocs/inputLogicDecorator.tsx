@@ -5,6 +5,7 @@ import { switchDate, updateDate } from '@/utils/updateDate';
 import { CellTypes } from '@/constants/cellTypes';
 import { DateInput } from '@/components/DateInput';
 import { InputLogicContext } from '@/context/inputLogicContext';
+import { InputError } from '@/components/DateInput/styled';
 
 export const inputLogicDecorator =
   (
@@ -57,7 +58,7 @@ export const inputLogicDecorator =
     );
 
     const onSwitchHeaderClick = () => {
-      setIsSelectingYear((prev) => !prev);
+      setIsSelectingYear(true);
     };
 
     const onCalendarIconClick = () => {
@@ -89,9 +90,9 @@ export const inputLogicDecorator =
             testId='input'
           />
           {!isDateValid && (
-            <h1>
+            <InputError>
               Your date is either more than {max} or less than {min}
-            </h1>
+            </InputError>
           )}
           <Component />
         </InputLogicContext.Provider>

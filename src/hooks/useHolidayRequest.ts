@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import { getHolidays } from '@/api/getHolidays';
 import { getFormattedDate, splitDashDate } from '@/utils/getFormattedDate';
 import { Holiday } from '@/types/interfaces';
-
-const CACHE_EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+import { CACHE_EXPIRATION_TIME } from '@/constants/common';
 
 export const useHolidayRequest = (
   year: number,

@@ -1,10 +1,11 @@
 import { ComponentType, Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 
 import { DateInput } from '@/components/DateInput';
-import { validateInputInRange } from '@/utils/isValidDate';
+import { isValidRange, validateInputInRange } from '@/utils/isValidDate';
 import { CellTypes } from '@/constants/cellTypes';
-import { switchDate } from '@/utils/updateDate';
+import { switchDate, updateDate } from '@/utils/updateDate';
 import { InputLogicContext } from '@/context/inputLogicContext';
+import { InputError } from '@/components/DateInput/styled';
 
 export const rangePickerLogicDecorator =
   (
@@ -21,6 +22,12 @@ export const rangePickerLogicDecorator =
     const [error, setError] = useState<string>('');
     const [isSelecting, setIsSelecting] = useState<boolean>(false);
     const [isSelectingYear, setIsSelectingYear] = useState<boolean>(false);
+
+    const setSelectedDateValue = (type: CellTypes, value: string) => () => {
+      const newDate = updateDate(value, type);
+
+      setInputDate(newDate);
+    };
 
     const handleStartDateEnter = (startValue: string) => {
       setInputDate(startValue);
@@ -73,7 +80,7 @@ export const rangePickerLogicDecorator =
         return;
       }
 
-      if (startDate > date) {
+      if (isValidRange(date, startDate)) {
         setEndDate(startDate);
         setStartDate(date);
         setIsSelecting(false);
@@ -96,7 +103,7 @@ export const rangePickerLogicDecorator =
 
     const contextValue = useMemo(
       () => ({
-        setSelectedDateValue: () => () => {},
+        setSelectedDateValue,
         onSwitchDate,
         onSwitchHeaderClick,
         isSelectingYear,
@@ -127,7 +134,7 @@ export const rangePickerLogicDecorator =
           inputDate={endDate}
           testId='end-input'
         />
-        {error && <h1>{error}</h1>}
+        {error && <InputError>{error}</InputError>}
         <Component />
       </InputLogicContext.Provider>
     );

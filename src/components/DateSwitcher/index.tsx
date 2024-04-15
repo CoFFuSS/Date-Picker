@@ -19,7 +19,6 @@ export const DateSwitcher = ({ month, year }: DateSwitcherProps) => {
       <SwitcherDateLabel htmlFor='DateSwitcher'>
         <SwitcherDateButton
           id='DateSwitcher'
-          type='submit'
           onClick={onSwitchHeaderClick}
         >
           {!isSelectingYear ? month : year}

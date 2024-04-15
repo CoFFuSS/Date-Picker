@@ -31,7 +31,6 @@ export const getCalendarData = (year: number, month: number, startOfWeek: StartD
   const daysInMonth = getDaysInMonth(year, month);
   const currentDays = getMonthDays(year, month, 1, daysInMonth, CellTypes.Current);
 
-  // prevMonth это номер месяца в календаре текущего месяца, а исходя из инпута, предыдущего
   const prevMonth = month - 1;
   const firstDayOfCurrMonth = new Date(year, prevMonth, 1).getDay();
   const diff =
@@ -47,7 +46,6 @@ export const getCalendarData = (year: number, month: number, startOfWeek: StartD
 
   const prevDays = getMonthDays(year, prevMonth, startingValue, prevMonthLastDay, CellTypes.Prev);
 
-  // next month
   const nextMonth = month + 1;
   const lastDayOfCurrMonth = new Date(year, month, 0).getDay();
 

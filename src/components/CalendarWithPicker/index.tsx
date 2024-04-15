@@ -57,7 +57,7 @@ export const CalendarWithPicker = ({
   );
 
   return (
-    <div>
+    <>
       <ThemeProvider theme={basicTheme}>
         <ErrorBoundary>
           <CalendarContext.Provider value={contextValue}>
@@ -65,6 +65,6 @@ export const CalendarWithPicker = ({
           </CalendarContext.Provider>
         </ErrorBoundary>
       </ThemeProvider>
-    </div>
+    </>
   );
 };
