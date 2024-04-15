@@ -1,7 +1,5 @@
 import { ChangeEvent, useState, KeyboardEvent, useRef } from 'react';
 
-import CalendarIcon from '@/assets/images/CalendarIcon.svg';
-import CloseCalendarIcon from '@/assets/images/CloseCalendarIcon.svg';
 import { DateInputProps } from '@/types/interfaces';
 import { validateInputDate } from '@/utils/isValidDate';
 
@@ -13,6 +11,9 @@ import {
   InputLabel,
   Wrapper,
 } from './styled';
+
+import { CalendarIcon } from '../Icons/CalendarIcon';
+import { CloseCalendarIcon } from '../Icons/CloseCalendarIcon';
 
 export const DateInput = ({
   onCalendarIconClick,

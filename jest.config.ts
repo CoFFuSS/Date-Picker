@@ -10,4 +10,5 @@ export default {
     '^@/(.*)': '<rootDir>/src/$1',
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules/'],
+  setupFilesAfterEnv: ['jest-styled-components'],
 };

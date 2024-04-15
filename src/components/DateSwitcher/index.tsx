@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 
-import SelectNextDateIcon from '@/assets/images/SelectNextDateIcon.svg';
-import SelectPrevDateIcon from '@/assets/images/SelectPrevDateIcon.svg';
 import { DateSwitcherProps } from '@/types/interfaces';
 import { CellTypes } from '@/constants/cellTypes';
 import { InputLogicContext } from '@/context/inputLogicContext';
+import { SelectPrevDateIcon } from '@/components/Icons/SelectPrevDateIcon';
+import { SelectNextDateIcon } from '@/components/Icons/SelectNextDateIcon';
 
 import { Container, DateSelector, SwitcherDateButton, SwitcherDateLabel } from './styled';
 
