@@ -20,6 +20,7 @@ export interface DateInputProps {
   onCalendarClearIconClick?: () => void;
   inputDate: string;
   testId: string;
+  isShow?: boolean;
 }
 
 export interface DateSwitcherProps {

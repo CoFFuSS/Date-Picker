@@ -32,6 +32,7 @@ export const rangePickerLogicDecorator =
     const handleStartDateEnter = (startValue: string) => {
       setInputDate(startValue);
       setStartDate(startValue);
+      setEndDate('');
     };
 
     const handleEndDateEnter = (endValue: string) => {
@@ -133,8 +134,9 @@ export const rangePickerLogicDecorator =
           onCalendarClearIconClick={onCalendarClearIconClick}
           inputDate={endDate}
           testId='end-input'
+          isShow={false}
         />
-        {error && <InputError>{error}</InputError>}
+        {error && <InputError data-testid='range-picker-error'>{error}</InputError>}
         <Component />
       </InputLogicContext.Provider>
     );

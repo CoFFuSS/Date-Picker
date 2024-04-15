@@ -21,6 +21,7 @@ export const DateInput = ({
   onCalendarClearIconClick,
   inputDate,
   testId,
+  isShow = true,
 }: DateInputProps) => {
   const [isValid, setIsValid] = useState<boolean>(true);
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
@@ -84,8 +85,11 @@ export const DateInput = ({
             data-testid={testId}
           />
         </InputLabel>
-        {!isEmpty && (
-          <CalendarIconContainer onClick={handleClearInput}>
+        {isShow && !isEmpty && (
+          <CalendarIconContainer
+            onClick={handleClearInput}
+            data-testid='clear-input'
+          >
             <CloseCalendarIcon />
           </CalendarIconContainer>
         )}
