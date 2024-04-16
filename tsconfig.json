@@ -1,0 +1,48 @@
+{
+  // jsconfig.json === tsconfig.json with allowJs: true
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./*"]
+    },
+
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["DOM", "ESNext"],
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "outDir": "dist",
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true
+  },
+
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "types": ["node"]
+    }
+  },
+
+  "exclude": ["node_modules", "dist", "build", ".vscode"],
+
+  "include": [
+    "rollup.config.mjs",
+    "jest.config.ts",
+    "typings/*.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/mocks/__mocks__/svgrMock.ts"
+  ]
+}
