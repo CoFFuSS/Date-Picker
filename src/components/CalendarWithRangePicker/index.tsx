@@ -7,7 +7,7 @@ import { getCalendarData } from '@/utils/getCalendarData';
 import { Calendar } from '@/components/Calendar';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { serviceDecorator } from '@/hocs/serviceDecorator';
-import { CalendarWithRangeProps, Todo } from '@/types/interfaces';
+import { CalendarWithRangeProps, Todo } from '@/types/types';
 import { CalendarContext } from '@/context/CalendarContext';
 import { rangePickerLogicDecorator } from '@/hocs/rangePickerLogicDecorator';
 import { basicTheme } from '@/theme';

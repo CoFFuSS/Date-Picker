@@ -2,7 +2,7 @@
 import { render, fireEvent, waitFor, screen, act } from '@testing-library/react';
 
 import '@testing-library/jest-dom';
-import { Holiday } from '@/types/interfaces';
+import { Holiday } from '@/types/types';
 import { StartDays } from '@/constants/startDays';
 
 import { CalendarWithRangePicker } from '.';

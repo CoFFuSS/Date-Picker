@@ -3,9 +3,9 @@ import { createContext } from 'react';
 import { CellTypes } from '@/constants/cellTypes';
 
 export const InputLogicContext = createContext({
-  setSelectedDateValue: (_type: CellTypes, _formattedDate: string) => () => {},
-  onSwitchDate: (_type: CellTypes) => () => {},
-  onSwitchHeaderClick: () => {},
+  handleSelectDateValue: (_type: CellTypes, _formattedDate: string) => () => {},
+  handleDateSwitch: (_type: CellTypes) => () => {},
+  handleSwitchHeaderClick: () => {},
   isSelectingYear: false,
   startDate: '',
   endDate: '',

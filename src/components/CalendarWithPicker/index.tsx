@@ -9,7 +9,7 @@ import { getCalendarData } from '@/utils/getCalendarData';
 import { Calendar } from '@/components/Calendar';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { serviceDecorator } from '@/hocs/serviceDecorator';
-import { CalendarWithPickerProps } from '@/types/interfaces';
+import { CalendarWithPickerProps } from '@/types/types';
 import { CalendarContext } from '@/context/CalendarContext';
 import { basicTheme } from '@/theme';
 

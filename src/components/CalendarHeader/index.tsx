@@ -1,5 +1,5 @@
 import { getDaysOfWeek } from '@/utils/getDaysOfWeek';
-import { CalendarHeaderProps } from '@/types/interfaces';
+import { CalendarHeaderProps } from '@/types/types';
 
 import { Container, HeaderCell, HeaderCellText } from './styled';
 

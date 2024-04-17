@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 
-import { Todo } from '@/types/interfaces';
+import { Todo } from '@/types/types';
 
 import {
   Container,

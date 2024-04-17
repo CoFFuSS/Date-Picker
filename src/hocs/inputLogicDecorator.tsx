@@ -21,7 +21,7 @@ export const inputLogicDecorator =
     const [isDateValid, setIsDateValid] = useState<boolean>(true);
     const [isSelectingYear, setIsSelectingYear] = useState<boolean>(false);
 
-    const onSubmitDate = (value: string) => {
+    const handleDateSubmit = (value: string) => {
       if (!isDateInRange(value, min, max)) {
         setIsDateValid(false);
       } else {
@@ -31,7 +31,7 @@ export const inputLogicDecorator =
       }
     };
 
-    const setSelectedDateValue = (type: CellTypes, value: string) => () => {
+    const handleSelectDateValue = (type: CellTypes, value: string) => () => {
       const newDate = updateDate(value, type);
 
       if (!isDateInRange(newDate, min, max)) {
@@ -43,7 +43,7 @@ export const inputLogicDecorator =
       }
     };
 
-    const onSwitchDate = useCallback(
+    const handleDateSwitch = useCallback(
       (type: CellTypes) => () => {
         const newDate = switchDate(inputDate, type, isSelectingYear);
 
@@ -57,19 +57,19 @@ export const inputLogicDecorator =
       [isSelectingYear],
     );
 
-    const onSwitchHeaderClick = () => {
+    const handleSwitchHeaderClick = () => {
       setIsSelectingYear(true);
     };
 
-    const onCalendarIconClick = () => {
+    const handleCalendarIconClick = () => {
       setIsShown((prev) => !prev);
     };
 
     const contextValue = useMemo(
       () => ({
-        setSelectedDateValue,
-        onSwitchDate,
-        onSwitchHeaderClick,
+        handleSelectDateValue,
+        handleDateSwitch,
+        handleSwitchHeaderClick,
         isSelectingYear,
         startDate: '',
         endDate: '',
@@ -77,15 +77,15 @@ export const inputLogicDecorator =
         handleMouseDown: () => () => {},
         handleMouseEnter: () => () => {},
       }),
-      [isSelectingYear, onSwitchDate],
+      [isSelectingYear, handleDateSwitch],
     );
 
     return (
       <>
         <InputLogicContext.Provider value={contextValue}>
           <DateInput
-            onSubmitDate={onSubmitDate}
-            onCalendarIconClick={onCalendarIconClick}
+            handleDateSubmit={handleDateSubmit}
+            handleCalendarIconClick={handleCalendarIconClick}
             inputDate={inputDate}
             testId='input'
           />

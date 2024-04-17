@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 
 import { CalendarHeader } from '@/components/CalendarHeader';
 import { InputLogicContext } from '@/context/inputLogicContext';
@@ -12,9 +12,9 @@ import { DateSwitcher } from '../DateSwitcher';
 import { CalendarContent } from '../CalendarContent';
 import { CalendarYearPicker } from '../CalendarYearPicker';
 
-export const Calendar = () => {
+export const Calendar = memo(() => {
   const {
-    setSelectedDateValue,
+    handleSelectDateValue,
     startDate,
     endDate,
     handleMouseDown,
@@ -45,7 +45,7 @@ export const Calendar = () => {
             holidays={holidays}
             showWeekends={showWeekends}
             selectedDay={selectedValue}
-            setSelectedDateValue={setSelectedDateValue}
+            handleSelectDateValue={handleSelectDateValue}
             todo={todo}
             handleMouseUp={handleMouseUp}
             handleMouseDown={handleMouseDown}
@@ -57,4 +57,4 @@ export const Calendar = () => {
       )}
     </CalendarContainer>
   );
-};
+});

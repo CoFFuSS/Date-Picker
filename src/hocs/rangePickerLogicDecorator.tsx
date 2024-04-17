@@ -23,7 +23,7 @@ export const rangePickerLogicDecorator =
     const [isSelecting, setIsSelecting] = useState<boolean>(false);
     const [isSelectingYear, setIsSelectingYear] = useState<boolean>(false);
 
-    const setSelectedDateValue = (type: CellTypes, value: string) => () => {
+    const handleSelectDateValue = (type: CellTypes, value: string) => () => {
       const newDate = updateDate(value, type);
 
       setInputDate(newDate);
@@ -39,7 +39,7 @@ export const rangePickerLogicDecorator =
       validateInputInRange(setEndDate, setError, startDate, endValue);
     };
 
-    const onSwitchDate = useCallback(
+    const handleDateSwitch = useCallback(
       (type: CellTypes) => () => {
         const newDate = switchDate(inputDate, type, isSelectingYear);
 
@@ -48,15 +48,15 @@ export const rangePickerLogicDecorator =
       [isSelectingYear],
     );
 
-    const onSwitchHeaderClick = () => {
+    const handleSwitchHeaderClick = () => {
       setIsSelectingYear(true);
     };
 
-    const onCalendarIconClick = () => {
+    const handleCalendarIconClick = () => {
       setIsShown((prev) => !prev);
     };
 
-    const onCalendarClearIconClick = () => {
+    const handleCalendarClearIconClick = () => {
       setStartDate('');
       setEndDate('');
     };
@@ -104,9 +104,9 @@ export const rangePickerLogicDecorator =
 
     const contextValue = useMemo(
       () => ({
-        setSelectedDateValue,
-        onSwitchDate,
-        onSwitchHeaderClick,
+        handleSelectDateValue,
+        handleDateSwitch,
+        handleSwitchHeaderClick,
         isSelectingYear,
         startDate,
         endDate,
@@ -114,24 +114,24 @@ export const rangePickerLogicDecorator =
         handleMouseDown,
         handleMouseEnter,
       }),
-      [handleMouseEnter, isSelectingYear, onSwitchDate],
+      [handleMouseEnter, isSelectingYear, handleDateSwitch],
     );
 
     return (
       <InputLogicContext.Provider value={contextValue}>
         Select Start Date
         <DateInput
-          onSubmitDate={handleStartDateEnter}
-          onCalendarIconClick={onCalendarIconClick}
-          onCalendarClearIconClick={onCalendarClearIconClick}
+          handleDateSubmit={handleStartDateEnter}
+          handleCalendarIconClick={handleCalendarIconClick}
+          handleCalendarClearIconClick={handleCalendarClearIconClick}
           inputDate={startDate}
           testId='start-input'
         />
         Select End Date
         <DateInput
-          onSubmitDate={handleEndDateEnter}
-          onCalendarIconClick={onCalendarIconClick}
-          onCalendarClearIconClick={onCalendarClearIconClick}
+          handleDateSubmit={handleEndDateEnter}
+          handleCalendarIconClick={handleCalendarIconClick}
+          handleCalendarClearIconClick={handleCalendarClearIconClick}
           inputDate={endDate}
           testId='end-input'
           isShow={false}

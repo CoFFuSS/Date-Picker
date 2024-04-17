@@ -4,7 +4,7 @@ import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { act } from 'react-dom/test-utils';
 
-import { Holiday } from '@/types/interfaces';
+import { Holiday } from '@/types/types';
 import { StartDays } from '@/constants/startDays';
 
 import { CalendarWithTodo } from '.';

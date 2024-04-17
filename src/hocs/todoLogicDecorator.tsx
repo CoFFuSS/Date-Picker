@@ -2,7 +2,7 @@ import { ComponentType, useContext, useState } from 'react';
 
 import { TodoList } from '@/components/TodoList';
 import { CalendarContext } from '@/context/CalendarContext';
-import { Todo } from '@/types/interfaces';
+import { Todo } from '@/types/types';
 
 export const todoLogicDecorator =
   (

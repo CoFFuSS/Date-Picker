@@ -15,9 +15,9 @@ export interface CalendarHeaderProps {
 }
 
 export interface DateInputProps {
-  onSubmitDate: (inputValue: string) => void;
-  onCalendarIconClick: Dispatch<SetStateAction<boolean>>;
-  onCalendarClearIconClick?: () => void;
+  handleDateSubmit: (inputValue: string) => void;
+  handleCalendarIconClick: Dispatch<SetStateAction<boolean>>;
+  handleCalendarClearIconClick?: () => void;
   inputDate: string;
   testId: string;
   isShow?: boolean;
@@ -33,7 +33,7 @@ export interface CalendarContentProps {
   holidays: string[];
   showWeekends: boolean;
   selectedDay: string;
-  setSelectedDateValue: (
+  handleSelectDateValue: (
     type: CellTypes,
     formattedDate: string,
   ) => MouseEventHandler<HTMLDivElement | undefined>;

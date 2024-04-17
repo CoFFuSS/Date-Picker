@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Todo } from '@/types/interfaces';
+import { Todo } from '@/types/types';
 
 export const useLocalStorageTodo = () => {
   const [todos, setTodos] = useState<Todo[]>([]);

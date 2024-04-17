@@ -1,4 +1,4 @@
-import { Todo } from '@/types/interfaces';
+import { Todo } from '@/types/types';
 
 import { getFormattedDate } from './getFormattedDate';
 

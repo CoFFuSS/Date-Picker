@@ -10,7 +10,7 @@ import { YearCell, YearCellWrapper } from './styled';
 
 export const CalendarYearPicker = () => {
   const { year } = useContext(ServiceDecoratorContext);
-  const { setSelectedDateValue } = useContext(InputLogicContext);
+  const { handleSelectDateValue } = useContext(InputLogicContext);
 
   return (
     <YearCellWrapper>
@@ -20,7 +20,7 @@ export const CalendarYearPicker = () => {
         return (
           <YearCell
             key={monthNumber}
-            onClick={setSelectedDateValue?.(CellTypes.Current, formattedDate)}
+            onClick={handleSelectDateValue?.(CellTypes.Current, formattedDate)}
           >
             {monthName}
           </YearCell>

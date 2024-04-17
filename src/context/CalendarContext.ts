@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 import { StartDays } from '@/constants/startDays';
-import { CellDate, Todo } from '@/types/interfaces';
+import { CellDate, Todo } from '@/types/types';
 
 export const CalendarContext = createContext({
   dates: [] as CellDate[],

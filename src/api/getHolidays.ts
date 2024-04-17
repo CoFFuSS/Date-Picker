@@ -1,4 +1,4 @@
-import { Holiday } from '@/types/interfaces';
+import { Holiday } from '@/types/types';
 
 export const getHolidays = (year: number) =>
   fetch(`https://date.nager.at/api/v3/PublicHolidays/${year}/BY`)

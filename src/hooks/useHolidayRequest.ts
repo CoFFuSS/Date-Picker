@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getHolidays } from '@/api/getHolidays';
 import { getFormattedDate, splitDashDate } from '@/utils/getFormattedDate';
-import { Holiday } from '@/types/interfaces';
+import { Holiday } from '@/types/types';
 import { CACHE_EXPIRATION_TIME } from '@/constants/common';
 
 export const useHolidayRequest = (
