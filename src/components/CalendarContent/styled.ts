@@ -23,7 +23,7 @@ export const DateCell = styled.div`
     }
 
     &[data-isholiday='true'] {
-      background-color: ${theme.colors.green};
+      background-color: ${theme.colors.lightPeachy};
     }
 
     &[data-selected='false']:hover {
